@@ -61,4 +61,4 @@ vulnerability_assessment_emails  = []
 
 | Date     | Release    | Change                                     |
 |----------|------------|--------------------------------------------|
-| 20210124 | 20210124.1 | Initial relase of Terraform module         |
+| 20210207 | 20210207.1 | The v1.0.0 relase of Terraform module      |
