@@ -1,4 +1,5 @@
 plan
+.terraform/modules
 .terraform/plugins
 *.tfstate
 *.tfstate.backup
