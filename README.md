@@ -50,6 +50,7 @@ Examples for this module along with various configurations can be found in the [
 
 ## History
 
-| Date     | Release    | Change                                |
-|----------|------------|---------------------------------------|
-| 20210509 | 20210509.1 | The v1.0.0 relase of Terraform module |
+| Date     | Release    | Change                                                                  |
+|----------|------------|-------------------------------------------------------------------------|
+| 20210509 | 20210509.1 | The v1.0.1 release which switches to multi module setup for elasticpool |
+| 20210207 | 20210207.1 | The v1.0.0 release of Terraform module                                  |
