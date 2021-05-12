@@ -2,12 +2,26 @@ variable "name" {
   description = "(Required) The name of the MSSQL instance. This needs to be globally unique. Changing this forces a new resource to be created."
 }
 
+variable "database_names" {
+  type        = list(map(string))
+  description = "(Required) The name of the PostgreSQL database(s)."
+}
+
 variable "dbowner" {
   description = "Azure Active Directory Account that will be dbowner"
 }
 
 variable "environment" {
   description = "The environment used for keyvault access"
+}
+
+variable "firewall_rules" {
+  type        = list(string)
+  description = "Specifies the Start IP Address associated with this Firewall Rule"
+}
+
+variable "list_of_subnets" {
+  default = []
 }
 
 variable "location" {
@@ -56,6 +70,10 @@ variable "administrator_login" {
   default     = "sqlhstsvc"
 }
 
+variable "administrator_login_password" {
+  description = "(Required) The Password associated with the administrator_login for the PostgreSQL Server."
+}
+
 variable "active_directory_administrator_login_username" {
   description = "The Active Directory Administrator Login Username"
   default     = ""
@@ -69,11 +87,6 @@ variable "active_directory_administrator_object_id" {
 variable "active_directory_administrator_tenant_id" {
   description = "The Active Directory Administrator Tenant ID"
   default     = ""
-}
-
-variable "module_db_count" {
-  description = "The count used to determine whether or not the db module is leveraged."
-  default     = 1
 }
 
 variable "module_elasticpool_count" {

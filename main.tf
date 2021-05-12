@@ -1,20 +1,22 @@
 module "sqlserver" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git?ref=v1.0.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git?ref=v1.0.1"
+
+  count = var.module_server_count
 
   name                                          = var.name
   environment                                   = var.environment
   location                                      = var.location
   resource_group                                = var.rg
-  count                                         = var.module_server_count
   dependencies                                  = []
   mssql_version                                 = var.mssql_version
-  list_of_subnets                               = []
+  list_of_subnets                               = var.list_of_subnets
   ssl_minimal_tls_version_enforced              = "1.2"
-  firewall_rules                                = []
+  firewall_rules                                = var.firewall_rules
   kv_name                                       = var.kv_name
   kv_rg                                         = var.kv_rg
   storageaccountinfo_resource_group_name        = var.storageaccountinfo_resource_group_name
   administrator_login                           = var.administrator_login
+  administrator_login_password                  = var.administrator_login_password
   active_directory_administrator_login_username = var.active_directory_administrator_login_username
   active_directory_administrator_object_id      = var.active_directory_administrator_object_id
   active_directory_administrator_tenant_id      = var.active_directory_administrator_tenant_id
@@ -24,9 +26,12 @@ module "sqlserver" {
 module "db" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v1.0.0"
 
-  name                                   = var.name
+  count = length(var.database_names)
+
+  name      = var.database_names[count.index].name
+  collation = lookup(var.database_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
+
   environment                            = var.environment
-  count                                  = var.module_db_count
   server_id                              = module.sqlserver[count.index].id
   server_name                            = module.sqlserver[count.index].name
   dbowner                                = var.dbowner
@@ -39,10 +44,11 @@ module "db" {
 module "elasticpool" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.0"
 
+  count = var.module_elasticpool_count
+
   name                = var.name
   location            = var.location
   resource_group_name = var.rg
-  count               = var.module_elasticpool_count
   server_name         = module.sqlserver[count.index].name
   max_size_gb         = var.max_size_gb
   skuname             = "BasicPool"
