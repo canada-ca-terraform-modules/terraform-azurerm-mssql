@@ -42,8 +42,13 @@ variable "rg" {
   description = "The resource group in which all resources should be provisioned."
 }
 
-variable "skuname" {
+variable "pool_sku_name" {
   description = "(Required) Specifies the SKU Name for this Elasticpool. The name of the SKU, will be either vCore based tier + family pattern (e.g. GP_Gen4, BC_Gen5) or the DTU based BasicPool, StandardPool, or PremiumPool pattern."
+}
+
+variable "db_sku_name" {
+  description = "(Optional) Specifies the name of the sku used by the database. Only changing this from tier Hyperscale to another tier will force a new resource to be created. For example, GP_S_Gen5_2,HS_Gen4_1,BC_Gen5_2, ElasticPool, Basic,S0, P2 ,DW100c, DS100."
+  default     = null
 }
 
 variable "tier" {
@@ -110,4 +115,9 @@ variable "tags" {
   default = {
     environment : "dev"
   }
+}
+
+variable "keyvault_enable" {
+  description = "(Optional) Enable Key Vault for passwords."
+  default     = false
 }

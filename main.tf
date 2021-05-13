@@ -1,5 +1,5 @@
 module "sqlserver" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git?ref=v1.0.1"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git?ref=master"
 
   count = var.module_server_count
 
@@ -21,10 +21,11 @@ module "sqlserver" {
   active_directory_administrator_object_id      = var.active_directory_administrator_object_id
   active_directory_administrator_tenant_id      = var.active_directory_administrator_tenant_id
   emails                                        = var.emails
+  keyvault_enable                               = var.keyvault_enable
 }
 
 module "db" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v1.0.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=master"
 
   count = length(var.database_names)
 
@@ -34,6 +35,7 @@ module "db" {
   environment                            = var.environment
   server_id                              = module.sqlserver[count.index].id
   server_name                            = module.sqlserver[count.index].name
+  sku_name                               = var.db_sku_name
   dbowner                                = var.dbowner
   kv_name                                = var.kv_name
   kv_rg                                  = var.kv_rg
@@ -42,7 +44,7 @@ module "db" {
 }
 
 module "elasticpool" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=master"
 
   count = var.module_elasticpool_count
 
@@ -51,8 +53,8 @@ module "elasticpool" {
   resource_group_name = var.rg
   server_name         = module.sqlserver[count.index].name
   max_size_gb         = var.max_size_gb
-  skuname             = "BasicPool"
-  tier                = "Basic"
+  sku_name            = var.pool_sku_name
+  tier                = var.tier
   capacity            = 100
   min_capacity        = 0
   max_capacity        = 5

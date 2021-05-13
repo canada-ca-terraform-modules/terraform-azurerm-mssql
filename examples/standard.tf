@@ -1,44 +1,44 @@
-module "sqlserver" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git"
+module "mssql_example" {
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql.git?ref=master"
 
-  name                             = "servername"
-  environment                      = "dev"
-  dependencies                     = []
-  mssql_version                    = "12.0"
-  list_of_subnets                  = []
-  ssl_minimal_tls_version_enforced = "1.2"
-  firewall_rules                   = []
-
-  // Runner
-  // 
-  location       = var.location
-  resource_group = var.rg
-}
-
-module "db" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git"
-
-  name        = "databasename"
+  // GLOBALS
+  name        = "mssqlservername"
+  location    = "canadacentral"
   environment = "dev"
-  server_id   = module.sqlserver.id
-  server_name = module.sqlserver.name
-  dbowner     = "firstname.lastname@example.ca"
-}
+  rg          = "mssql-dev-rg"
 
-module "elasticpool" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git"
+  // SERVER
+  module_server_count          = 1
+  administrator_login          = "sqlhstsvc"
+  administrator_login_password = var.administrator_login_password
+  emails = [
+    "william.hearn@canada.ca",
+    "zachary.seguin@canada.ca"
+  ]
+  tags = {
+    "tier" = "k8s"
+  }
+  mssql_version = "12.0"
+  # keyvault_enable = true
+  # kv_name = ""
+  # kv_rg = ""
+  # storageaccountinfo_resource_group_name = ""
+  # active_directory_administrator_login_username = ""
+  # active_directory_administrator_object_id = ""
+  # active_directory_administrator_tenant_id = ""
+  firewall_rules  = []
+  list_of_subnets = [local.containerCCSubnetRef]
 
-  name         = "elasticpoolname"
-  server_name  = module.sqlserver.name
-  max_size_gb  = 9.7656250
-  skuname      = "BasicPool"
-  tier         = "Basic"
-  capacity     = 100
-  min_capacity = 0
-  max_capacity = 5
+  // DB
+  database_names = [
+    { name = "mssqlservername", collation = "SQL_Latin1_General_CP437_CI_AI" }
+  ]
+  db_sku_name = "GP_Gen5_4"
+  dbowner     = "firstname.lastname@cloud.statcan.ca"
 
-  // Runner
-  // 
-  location       = var.location
-  resource_group = var.rg
+  // POOL
+  module_elasticpool_count = 1
+  pool_sku_name            = "BasicPool"
+  tier                     = "Basic"
+  max_size_gb              = 9.7656250
 }
