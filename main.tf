@@ -41,6 +41,9 @@ module "db" {
   kv_rg                                  = var.kv_rg
   storageaccountinfo_resource_group_name = var.storageaccountinfo_resource_group_name
   tags                                   = var.tags
+
+  sa_primary_blob_endpoint = module.sqlserver[count.index].sa_primary_blob_endpoint
+  sa_primary_access_key    = module.sqlserver[count.index].sa_primary_access_key
 }
 
 module "elasticpool" {
