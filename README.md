@@ -55,8 +55,9 @@ Examples for this module along with various configurations can be found in the [
 
 ## History
 
-| Date     | Release    | Change                                                                                |
-|----------|------------|---------------------------------------------------------------------------------------|
-| 20210511 | 20210511.1 | The v1.0.2 release which uses database_names var to determine count for database spec |
-| 20210509 | 20210509.1 | The v1.0.1 release which switches to multi module setup for elasticpool               |
-| 20210207 | 20210207.1 | The v1.0.0 release of Terraform module                                                |
+| Date     | Release    | Change                                                                                    |
+|----------|------------|-------------------------------------------------------------------------------------------|
+| 20210628 | 20210628.1 | The v1.1.0 release which pins versions and switches database names to list of map strings |
+| 20210511 | 20210511.1 | The v1.0.2 release which uses database_names var to determine count for database spec     |
+| 20210509 | 20210509.1 | The v1.0.1 release which switches to multi module setup for elasticpool                   |
+| 20210207 | 20210207.1 | The v1.0.0 release of Terraform module                                                    |
