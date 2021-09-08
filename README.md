@@ -4,19 +4,19 @@ Creates a MSSQL instance using the Azure Managed Database for MSSQL service.
 
 ## Security Controls
 
-* Adheres to the [CIS Microsoft Azure Foundations Benchmark 1.3.0](https://docs.microsoft.com/en-us/azure/governance/policy/samples/cis-azure-1-3-0) for Database Services.
+- Adheres to the [CIS Microsoft Azure Foundations Benchmark 1.3.0](https://docs.microsoft.com/en-us/azure/governance/policy/samples/cis-azure-1-3-0) for Database Services.
 
 ## Dependencies
 
-* Terraform v0.14.x +
-* Terraform AzureRM Provider 2.5 +
+- Terraform v0.14.x +
+- Terraform AzureRM Provider 2.5 +
 
 ## Relationships
 
-* [MSSQL](https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql)
-* [MSSQL Database](https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database)
-* [MSSQL Elasticpool](https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool)
-* [MSSQL Server](https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server)
+- [MSSQL](https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql)
+- [MSSQL Database](https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database)
+- [MSSQL Elasticpool](https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool)
+- [MSSQL Server](https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server)
 
 ## Usage
 
@@ -55,9 +55,10 @@ Examples for this module along with various configurations can be found in the [
 
 ## History
 
-| Date     | Release    | Change                                                                                    |
-|----------|------------|-------------------------------------------------------------------------------------------|
-| 20210628 | 20210628.1 | The v1.1.0 release which pins versions and switches database names to list of map strings |
-| 20210511 | 20210511.1 | The v1.0.2 release which uses database_names var to determine count for database spec     |
-| 20210509 | 20210509.1 | The v1.0.1 release which switches to multi module setup for elasticpool                   |
-| 20210207 | 20210207.1 | The v1.0.0 release of Terraform module                                                    |
+| Date     | Release | Change                                                                         |
+|----------|---------|--------------------------------------------------------------------------------|
+| 20210908 | v1.1.1  | Release which resolves issues with multiple databases                          |
+| 20210628 | v1.1.0  | Release which pins versions and switches database names to list of map strings |
+| 20210511 | v1.0.2  | Release which uses database_names var to determine count for database spec     |
+| 20210509 | v1.0.1  | Release which switches to multi module setup for elasticpool                   |
+| 20210207 | v1.0.0  | Release of Terraform module                                                    |

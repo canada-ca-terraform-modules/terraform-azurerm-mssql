@@ -1,5 +1,5 @@
 module "mssql_example" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql.git?ref=master"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql.git?ref=v1.1.1"
 
   // GLOBALS
   name        = "mssqlservername"

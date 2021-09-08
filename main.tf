@@ -33,8 +33,8 @@ module "db" {
   collation = lookup(var.database_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
 
   environment                            = var.environment
-  server_id                              = module.sqlserver[count.index].id
-  server_name                            = module.sqlserver[count.index].name
+  server_id                              = module.sqlserver[0].id
+  server_name                            = module.sqlserver[0].name
   sku_name                               = var.db_sku_name
   dbowner                                = var.dbowner
   kv_name                                = var.kv_name
@@ -42,8 +42,8 @@ module "db" {
   storageaccountinfo_resource_group_name = var.storageaccountinfo_resource_group_name
   tags                                   = var.tags
 
-  sa_primary_blob_endpoint = module.sqlserver[count.index].sa_primary_blob_endpoint
-  sa_primary_access_key    = module.sqlserver[count.index].sa_primary_access_key
+  sa_primary_blob_endpoint = module.sqlserver[0].sa_primary_blob_endpoint
+  sa_primary_access_key    = module.sqlserver[0].sa_primary_access_key
 }
 
 module "elasticpool" {
@@ -54,7 +54,7 @@ module "elasticpool" {
   name                = var.name
   location            = var.location
   resource_group_name = var.rg
-  server_name         = module.sqlserver[count.index].name
+  server_name         = module.sqlserver[0].name
   max_size_gb         = var.max_size_gb
   sku_name            = var.pool_sku_name
   tier                = var.tier
