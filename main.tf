@@ -1,3 +1,5 @@
+
+
 module "sqlserver" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git?ref=v1.1.0"
 
@@ -27,11 +29,11 @@ module "sqlserver" {
 module "db" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v1.0.1"
 
-  count = length(var.database_names)
+  count                                  = length(var.database_names)
 
-  name      = var.database_names[count.index].name
-  collation = lookup(var.database_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
-
+  name                                   = var.database_names[count.index].name
+  collation                              = lookup(var.database_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
+  max_size_gb                            = lookup(var.database_names[count.index], "db_max_size_gb", null)
   environment                            = var.environment
   server_id                              = module.sqlserver[0].id
   server_name                            = module.sqlserver[0].name

@@ -57,6 +57,7 @@ Examples for this module along with various configurations can be found in the [
 
 | Date     | Release | Change                                                                         |
 |----------|---------|--------------------------------------------------------------------------------|
+| 20211004 | v1.1.2  | Release introduced max_size_gb.                                                |
 | 20210908 | v1.1.1  | Release which resolves issues with multiple databases                          |
 | 20210628 | v1.1.0  | Release which pins versions and switches database names to list of map strings |
 | 20210511 | v1.0.2  | Release which uses database_names var to determine count for database spec     |
