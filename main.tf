@@ -34,6 +34,12 @@ module "db" {
   name                                   = var.database_names[count.index].name
   collation                              = lookup(var.database_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
   max_size_gb                            = lookup(var.database_names[count.index], "db_max_size_gb", null)
+  short_retentiondays                    = lookup(var.database_names[count.index], "short_retentiondays", "7")
+  ltr_monthly_retention                  = lookup(var.database_names[count.index], "ltr_monthly_retention", null)
+  ltr_week_of_year                       = lookup(var.database_names[count.index], "ltr_week_of_year", "52")
+  ltr_weekly_retention                   = lookup(var.database_names[count.index], "ltr_weekly_retention", "P1W")
+  ltr_yearly_retention                   = lookup(var.database_names[count.index], "ltr_yearly_retention", null)
+
   environment                            = var.environment
   server_id                              = module.sqlserver[0].id
   server_name                            = module.sqlserver[0].name
