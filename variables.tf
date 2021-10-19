@@ -74,6 +74,26 @@ variable "location" {
   description = "The Azure Region in which all resources should be provisioned."
 }
 
+variable "ltr_monthly_retention" {
+  description = "The monthly retention policy for an LTR backup. (1 to 120 weeks eg. P1Y, P1M, P4W, P30D)"
+  default     = null
+}
+
+variable "ltr_week_of_year" {
+  description = "The week of the year to take the yearly backup.  Value has to be between 1 and 52."
+  default     = 52
+}
+
+variable "ltr_weekly_retention" {
+  description = "The weekly retention policy for an LTR backup. (1 to 520 weeks eg. P1Y, P1M, P1W, P7D)"
+  default     = "P1W"
+}
+
+variable "ltr_yearly_retention" {
+  description = "The yearly retention policy for an LTR backup. (1 to 120 weeks eg. P1Y, P12M, P52W, P365D)"
+  default     = null
+}
+
 variable "max_size_gb" {
   description = "(Optional) The max data size of the elastic pool in gigabytes. Conflicts with max_size_bytes."
   default     = null
@@ -106,6 +126,11 @@ variable "rg" {
   description = "The resource group in which all resources should be provisioned."
 }
 
+variable "short_retentiondays" {
+  description = "Point in Time Restore Configuration.  Values has to be between 7 and 35"
+  default     = 7
+}
+
 variable "storageaccountinfo_resource_group_name" {
   description = "The storageaccountinfo resource group name."
   default     = ""
@@ -121,3 +146,5 @@ variable "tags" {
 variable "tier" {
   description = "(Required) The tier of the particular SKU. Possible values are GeneralPurpose, BusinessCritical, Basic, Standard, or Premium. For more information see the documentation for your Elasticpool configuration: vCore-based or DTU-based."
 }
+
+
