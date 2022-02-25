@@ -1,7 +1,5 @@
-
-
 module "sqlserver" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git?ref=v1.1.3"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git?ref=v1.1.4"
 
   count = var.module_server_count
 
@@ -13,6 +11,7 @@ module "sqlserver" {
   mssql_version                                 = var.mssql_version
   list_of_subnets                               = var.list_of_subnets
   ssl_minimal_tls_version_enforced              = "1.2"
+  connection_policy                             = var.connection_policy
   firewall_rules                                = var.firewall_rules
   kv_name                                       = var.kv_name
   kv_rg                                         = var.kv_rg

@@ -46,6 +46,11 @@ variable "environment" {
   description = "The environment used for keyvault access."
 }
 
+variable "connection_policy" {
+  description = "The connection policy the server will use (Default, Proxy or Redirect)"
+  default     = "Default"
+}
+
 variable "firewall_rules" {
   type        = list(string)
   description = "Specifies the Start IP Address associated with this Firewall Rule."
