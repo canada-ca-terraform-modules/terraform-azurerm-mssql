@@ -42,7 +42,7 @@ module "db" {
   environment                            = var.environment
   server_id                              = module.sqlserver[0].id
   server_name                            = module.sqlserver[0].name
-  sku_name                               = var.db_sku_names[count.index].name
+  sku_name                               = var.db_sku_names[count.index]
   dbowner                                = var.dbowner
   kv_name                                = var.kv_name
   kv_rg                                  = var.kv_rg
