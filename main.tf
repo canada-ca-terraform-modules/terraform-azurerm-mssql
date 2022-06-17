@@ -65,6 +65,7 @@ module "elasticpool" {
   max_size_gb         = var.max_size_gb
   sku_name            = var.pool_sku_name
   tier                = var.tier
+  family              = var.family
   capacity            = 100
   min_capacity        = 0
   max_capacity        = 5

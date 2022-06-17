@@ -55,6 +55,9 @@ variable "firewall_rules" {
   type        = list(string)
   description = "Specifies the Start IP Address associated with this Firewall Rule."
 }
+variable "family" {
+  default = null
+}
 
 variable "keyvault_enable" {
   description = "(Optional) Enable Key Vault for passwords."
