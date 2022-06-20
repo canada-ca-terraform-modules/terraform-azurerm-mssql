@@ -68,5 +68,5 @@ module "elasticpool" {
   family              = var.family
   capacity            = 40
   min_capacity        = 0
-  max_capacity        = 5
+  max_capacity        = 4
 }
