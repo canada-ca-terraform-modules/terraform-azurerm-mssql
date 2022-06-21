@@ -22,6 +22,18 @@ variable "active_directory_administrator_tenant_id" {
   default     = ""
 }
 
+variable "capacity" {
+    default = null
+}
+
+variable "min_capacity" {
+    default = null
+}
+
+variable "max_capacity" {
+    default = null
+}
+
 variable "database_names" {
   type        = list(map(string))
   description = "(Required) The name of the PostgreSQL database(s)."
