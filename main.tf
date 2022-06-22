@@ -30,7 +30,7 @@ module "db" {
 
   count                                  = length(var.database_names)
 
-  name                                   =
+  name                                   = var.database_names[count.index].name
   collation                              = lookup(var.database_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
   max_size_gb                            = lookup(var.database_names[count.index], "db_max_size_gb", null)
   short_retentiondays                    = lookup(var.database_names[count.index], "short_retentiondays", "7")
