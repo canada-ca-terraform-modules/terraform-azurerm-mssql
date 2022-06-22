@@ -56,7 +56,7 @@ module "db" {
 module "elasticpool" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.1"
 
-  count = length(var.elasticpool_settings)
+  count = length(var.elasticpools)
 
   name                = var.elasticpools[count.index].name
   location            = var.location
