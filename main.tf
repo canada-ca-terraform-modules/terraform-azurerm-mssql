@@ -6,7 +6,7 @@ module "sqlserver" {
   name                                          = var.name
   environment                                   = var.environment
   location                                      = var.location
-  resource_group                                = var.rg
+  resource_group                                = var.resource_group_name
   dependencies                                  = []
   mssql_version                                 = var.mssql_version
   list_of_subnets                               = var.list_of_subnets
@@ -14,7 +14,7 @@ module "sqlserver" {
   connection_policy                             = var.connection_policy
   firewall_rules                                = var.firewall_rules
   kv_name                                       = var.kv_name
-  kv_rg                                         = var.kv_rg
+  kv_rg                                         = var.kv_resource_group_name
   storageaccountinfo_resource_group_name        = var.storageaccountinfo_resource_group_name
   administrator_login                           = var.administrator_login
   administrator_login_password                  = var.administrator_login_password
@@ -30,7 +30,7 @@ module "db" {
 
   count                                  = length(var.database_names)
 
-  name                                   = var.database_names[count.index].name
+  name                                   =
   collation                              = lookup(var.database_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
   max_size_gb                            = lookup(var.database_names[count.index], "db_max_size_gb", null)
   short_retentiondays                    = lookup(var.database_names[count.index], "short_retentiondays", "7")
@@ -56,17 +56,17 @@ module "db" {
 module "elasticpool" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.1"
 
-  count = var.module_elasticpool_count
+  count = length(var.elasticpool_settings)
 
-  name                = var.name
+  name                = var.elasticpools[count.index].name
   location            = var.location
-  resource_group_name = var.rg
+  resource_group_name = var.resource_group_name
   server_name         = module.sqlserver[0].name
-  max_size_gb         = var.max_size_gb
-  sku_name            = var.pool_sku_name
-  tier                = var.tier
-  family              = var.family
-  capacity            = var.capacity
-  min_capacity        = var.min_capacity
-  max_capacity        = var.max_capacity
+  max_size_gb         = lookup(var.elasticpools[count.index], "max_size_gb", null)
+  sku_name            = lookup(var.elasticpools[count.index], "pool_sku_name", null)
+  tier                = lookup(var.elasticpools[count.index], "tier", null)
+  family              = lookup(var.elasticpools[count.index], "family", null)
+  capacity            = lookup(var.elasticpools[count.index], "capacity", null)
+  min_capacity        = lookup(var.elasticpools[count.index], "min_capacity", null)
+  max_capacity        = lookup(var.elasticpools[count.index], "max_capacity", null)
 }

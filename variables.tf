@@ -22,18 +22,6 @@ variable "active_directory_administrator_tenant_id" {
   default     = ""
 }
 
-variable "capacity" {
-    default = null
-}
-
-variable "min_capacity" {
-    default = null
-}
-
-variable "max_capacity" {
-    default = null
-}
-
 variable "database_names" {
   type        = list(map(string))
   description = "(Required) The name of the PostgreSQL database(s)."
@@ -63,6 +51,11 @@ variable "connection_policy" {
   default     = "Default"
 }
 
+variable "elasticpools" {
+  description = "TBD"
+  default     = null
+}
+
 variable "firewall_rules" {
   type        = list(string)
   description = "Specifies the Start IP Address associated with this Firewall Rule."
@@ -81,7 +74,7 @@ variable "kv_name" {
   default     = ""
 }
 
-variable "kv_rg" {
+variable "kv_resource_group_name" {
   description = "The keyvault resource group."
   default     = ""
 }
@@ -114,16 +107,6 @@ variable "ltr_yearly_retention" {
   default     = null
 }
 
-variable "max_size_gb" {
-  description = "(Optional) The max data size of the elastic pool in gigabytes. Conflicts with max_size_bytes."
-  default     = null
-}
-
-variable "module_elasticpool_count" {
-  description = "The count used to determine whether or not the elasticpool module is leveraged."
-  default     = 0
-}
-
 variable "module_server_count" {
   description = "The count used to determine whether or not the sqlserver module is leveraged."
   default     = 1
@@ -138,11 +121,7 @@ variable "name" {
   description = "(Required) The name of the MSSQL instance. This needs to be globally unique. Changing this forces a new resource to be created."
 }
 
-variable "pool_sku_name" {
-  description = "(Required) Specifies the SKU Name for this Elasticpool. The name of the SKU, will be either vCore based tier + family pattern (e.g. GP_Gen4, BC_Gen5) or the DTU based BasicPool, StandardPool, or PremiumPool pattern."
-}
-
-variable "rg" {
+variable "resource_group_name" {
   description = "The resource group in which all resources should be provisioned."
 }
 
@@ -162,9 +141,4 @@ variable "tags" {
     environment : "dev"
   }
 }
-
-variable "tier" {
-  description = "(Required) The tier of the particular SKU. Possible values are GeneralPurpose, BusinessCritical, Basic, Standard, or Premium. For more information see the documentation for your Elasticpool configuration: vCore-based or DTU-based."
-}
-
 
