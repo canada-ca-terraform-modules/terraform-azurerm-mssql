@@ -52,8 +52,10 @@ variable "connection_policy" {
 }
 
 variable "elasticpools" {
+  type        = list(map(string))
   description = "TBD"
-  default     = null
+  default     = [{}]
+  #   {
 }
 
 variable "firewall_rules" {
