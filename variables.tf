@@ -55,7 +55,6 @@ variable "elasticpools" {
   type        = list(map(string))
   description = "TBD"
   default     = [{}]
-  #   {
 }
 
 variable "firewall_rules" {
