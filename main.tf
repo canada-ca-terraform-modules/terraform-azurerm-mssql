@@ -70,3 +70,4 @@ module "elasticpool" {
   min_capacity        = lookup(var.elasticpools[count.index], "min_capacity", null)
   max_capacity        = lookup(var.elasticpools[count.index], "max_capacity", null)
 }
+
