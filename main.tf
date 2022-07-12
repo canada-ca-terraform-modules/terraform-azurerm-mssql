@@ -1,5 +1,5 @@
 module "sqlserver" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git?ref=v1.1.4"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server.git?ref=developmen"
 
   count = var.module_server_count
 
@@ -26,7 +26,7 @@ module "sqlserver" {
 }
 
 module "db" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v1.0.2"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git?ref=development_sama"
 
   count                                  = length(var.database_names)
 
@@ -39,6 +39,7 @@ module "db" {
   ltr_weekly_retention                   = lookup(var.database_names[count.index], "ltr_weekly_retention", "P1W")
   ltr_yearly_retention                   = lookup(var.database_names[count.index], "ltr_yearly_retention", null)
 
+  license_type                           = var.license_type
   environment                            = var.environment
   server_id                              = module.sqlserver[0].id
   server_name                            = module.sqlserver[0].name
