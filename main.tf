@@ -1,8 +1,7 @@
 module "sqlserver" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server.git?ref=developmen"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server.git?ref=development"
 
   count = var.module_server_count
-
   name                                          = var.name
   environment                                   = var.environment
   location                                      = var.location
