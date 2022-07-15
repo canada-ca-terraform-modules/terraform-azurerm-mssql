@@ -22,7 +22,10 @@ module "sqlserver" {
   active_directory_administrator_tenant_id      = var.active_directory_administrator_tenant_id
   emails                                        = var.emails
   keyvault_enable                               = var.keyvault_enable
-}
+  private_endpoint                              = [{vnet_name    = "DevCC-Vnet",
+                                                    vnet_rg_name = "network-dev-rg",
+                                                    subnet_name  = "devcc-back"}]
+
 
 module "db" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git?ref=development_sama"
