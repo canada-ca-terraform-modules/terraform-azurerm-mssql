@@ -52,6 +52,9 @@ module "db" {
 
   sa_primary_blob_endpoint = module.sqlserver[0].sa_primary_blob_endpoint
   sa_primary_access_key    = module.sqlserver[0].sa_primary_access_key
+
+  create_mode                 = var.create_mode
+  creation_source_database_id = var.creation_source_database_id
 }
 
 module "elasticpool" {
