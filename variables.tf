@@ -22,16 +22,6 @@ variable "active_directory_administrator_tenant_id" {
   default     = ""
 }
 
-variable "create_mode" {
-  description = "(Optional) Specifies how to create the database. Must be either Default to create a new database or PointInTimeRestore to restore from a snapshot. Defaults to Default."
-  default     = null
-}
-
-variable "creation_source_database_id" {
-  description = " (Optional) The id of the source database to be referred to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created."
-  default     = null
-}
-
 variable "database_names" {
   type        = list(map(string))
   description = "(Required) The name of the PostgreSQL database(s)."
