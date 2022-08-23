@@ -31,7 +31,6 @@ module "db" {
   count                                  = length(var.database_names)
 
   name                                   = var.database_names[count.index].name
-  server_name                            = var.name
   resource_group_name                    = var.resource_group_name
   collation                              = lookup(var.database_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
   max_size_gb                            = lookup(var.database_names[count.index], "db_max_size_gb", null)
