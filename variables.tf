@@ -27,10 +27,6 @@ variable "database_names" {
   description = "(Required) The name of the PostgreSQL database(s)."
 }
 
-variable "dbowners" {
-  description = "Azure Active Directory Account that will be dbowner."
-}
-
 variable "db_sku_names" {
   description = "(Optional) Specifies the name of the sku used by the database. Only changing this from tier Hyperscale to another tier will force a new resource to be created. For example, GP_S_Gen5_2,HS_Gen4_1,BC_Gen5_2, ElasticPool, Basic,S0, P2 ,DW100c, DS100."
   default     = null
