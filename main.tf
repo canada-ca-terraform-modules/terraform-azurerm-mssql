@@ -47,7 +47,7 @@ module "db" {
   server_id                              = module.sqlserver[0].id
   server_name                            = module.sqlserver[0].name
   sku_name                               = var.db_sku_names[count.index]
-  dbowner                                = var.dbowner
+  dbowners                                = var.dbowners
   kv_name                                = var.kv_name
   kv_rg                                  = var.kv_resource_group_name
   storageaccountinfo_resource_group_name = var.storageaccountinfo_resource_group_name

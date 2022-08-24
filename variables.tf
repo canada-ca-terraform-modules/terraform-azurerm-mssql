@@ -27,7 +27,7 @@ variable "database_names" {
   description = "(Required) The name of the PostgreSQL database(s)."
 }
 
-variable "dbowner" {
+variable "dbowners" {
   description = "Azure Active Directory Account that will be dbowner."
 }
 
