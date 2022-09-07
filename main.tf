@@ -28,7 +28,7 @@ module "sqlserver" {
     vnet_resource_group_name = "network-dev-rg",
     subnet_name  = "devcc-back"
   }]
-  tags = var.tags 
+  #tags = var.tags 
 }
 
 module "db" {
