@@ -22,9 +22,9 @@ variable "active_directory_administrator_tenant_id" {
   default     = ""
 }
 
-variable "database_names" {
+variable "db_names" {
   type        = list(map(string))
-  description = "(Required) The name of the PostgreSQL database(s)."
+  description = "(Required) The name of the MSSQL database(s)."
 }
 
 variable "db_sku_names" {
@@ -47,9 +47,9 @@ variable "connection_policy" {
   default     = "Default"
 }
 
-variable "elasticpools" {
+variable "ep_names" {
   type        = list(map(string))
-  description = "TBD"
+  description = "The name of the MSSQL elastic pool(s)."
   default     = null
 }
 
@@ -61,7 +61,7 @@ variable "family" {
   default = null
 }
 
-variable "keyvault_enable" {
+variable "kv_enable" {
   description = "(Optional) Enable Key Vault for passwords."
   default     = false
 }
@@ -78,7 +78,7 @@ variable "kv_resource_group_name" {
 variable "license_type" {
   default = "BasePrice"
 }
-variable "list_of_subnets" {
+variable "subnets" {
   default = []
 }
 
@@ -106,17 +106,12 @@ variable "ltr_yearly_retention" {
   default     = null
 }
 
-variable "module_server_count" {
-  description = "The count used to determine whether or not the sqlserver module is leveraged."
-  default     = 1
-}
-
 variable "mssql_version" {
   description = "The version of the MSSQL Server."
   default     = "12.0"
 }
 
-variable "name" {
+variable "mssql_name" {
   description = "(Required) The name of the MSSQL instance. This needs to be globally unique. Changing this forces a new resource to be created."
 }
 
@@ -124,12 +119,12 @@ variable "resource_group_name" {
   description = "The resource group in which all resources should be provisioned."
 }
 
-variable "short_retentiondays" {
-  description = "Point in Time Restore Configuration.  Values has to be between 7 and 35"
+variable "str_days" {
+  description = "Short Term Retention Point in Time Restore Configuration.  Values has to be between 7 and 35"
   default     = 7
 }
 
-variable "storageaccountinfo_resource_group_name" {
+variable "sa_resource_group_name" {
   description = "The storageaccountinfo resource group name."
   default     = ""
 }
