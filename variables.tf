@@ -75,9 +75,7 @@ variable "kv_resource_group_name" {
   description = "The keyvault resource group."
   default     = ""
 }
-variable "license_type" {
-  default = "BasePrice"
-}
+
 variable "subnets" {
   default = []
 }
