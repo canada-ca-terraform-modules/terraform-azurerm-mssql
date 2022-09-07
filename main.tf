@@ -23,11 +23,7 @@ module "sqlserver" {
   active_directory_administrator_object_id      = var.active_directory_administrator_object_id
   active_directory_administrator_tenant_id      = var.active_directory_administrator_tenant_id
   emails                                        = var.emails
-  private_endpoint = [{
-    vnet_name    = "DevCC-Vnet",
-    vnet_resource_group_name = "network-dev-rg",
-    subnet_name  = "devcc-back"
-  }]
+  private_endpoint = var.private_endpoint
   #tags = var.tags 
 }
 
