@@ -1,7 +1,7 @@
 module "sqlserver" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server.git?ref=development_sama"
   
-  count = var.mssql_name ? 1 : 0 
+  count = var.mssql_name == null ? 0 : 1 
   
   name                                          = var.mssql_name
   environment                                   = var.environment
@@ -64,7 +64,7 @@ module "db" {
 module "elasticpool" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.1"
   
-  count = var.ep_names ? length(var.ep_names) : 0
+  count = var.ep_names == null ?  0 : length(var.ep_names)
 
   name                = var.ep_names[count.index].name
   location            = var.location
