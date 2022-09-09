@@ -53,7 +53,7 @@ module "db" {
   sa_resource_group_name                 = var.sa_resource_group_name
   sa_primary_blob_endpoint               = module.sqlserver[0].sa_primary_blob_endpoint
   sa_primary_access_key                  = module.sqlserver[0].sa_primary_access_key
-  license_type                           = substr(var.sku_name, 0, length(local.general_serverless_prefix)) == local.general_serverless_prefix ? "LicenseIncluded" : "BasePrice"
+  license_type                           = "LicenseIncluded"
 
   tags                                   = var.tags
 }
