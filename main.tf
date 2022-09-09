@@ -36,14 +36,13 @@ module "db" {
   resource_group_name                    = var.resource_group_name
   collation                              = lookup(var.db_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
   max_size_gb                            = lookup(var.db_names[count.index], "db_max_size_gb", null)
-  str_days                    = lookup(var.db_names[count.index], "str_days", "7")
+  str_days                               = lookup(var.db_names[count.index], "str_days", "7")
   ltr_monthly_retention                  = lookup(var.db_names[count.index], "ltr_monthly_retention", null)
   ltr_week_of_year                       = lookup(var.db_names[count.index], "ltr_week_of_year", "52")
   ltr_weekly_retention                   = lookup(var.db_names[count.index], "ltr_weekly_retention", "P1W")
   ltr_yearly_retention                   = lookup(var.db_names[count.index], "ltr_yearly_retention", null)
   create_mode                            = lookup(var.db_names[count.index], "create_mode", "Default")
   creation_source_database_id            = lookup(var.db_names[count.index], "creation_source_database_id", null)
-
   environment                            = var.environment
   server_id                              = module.sqlserver[0].id
   server_name                            = module.sqlserver[0].name
@@ -51,9 +50,11 @@ module "db" {
   kv_name                                = var.kv_name
   kv_rg                                  = var.kv_resource_group_name
   
-  sa_resource_group_name = var.sa_resource_group_name
-  sa_primary_blob_endpoint = module.sqlserver[0].sa_primary_blob_endpoint
-  sa_primary_access_key    = module.sqlserver[0].sa_primary_access_key
+  sa_resource_group_name                 = var.sa_resource_group_name
+  sa_primary_blob_endpoint               = module.sqlserver[0].sa_primary_blob_endpoint
+  sa_primary_access_key                  = module.sqlserver[0].sa_primary_access_key
+  license_type                           = substr(var.sku_name, 0, length(local.general_serverless_prefix)) == local.general_serverless_prefix ? "LicenseIncluded" : "BasePrice"
+
   tags                                   = var.tags
 }
 
