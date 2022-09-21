@@ -43,6 +43,8 @@ module "db" {
   ltr_yearly_retention                   = lookup(var.db_names[count.index], "ltr_yearly_retention", null)
   create_mode                            = lookup(var.db_names[count.index], "create_mode", "Default")
   creation_source_database_id            = lookup(var.db_names[count.index], "creation_source_database_id", null)
+  recover_database_id                    = lookup(var.db_names[count.index], "recover_database_id", null)
+  restore_dropped_database_id            = lookup(var.db_names[count.index], "restore_dropped_database_id", null)
   environment                            = var.environment
   server_id                              = module.sqlserver[0].id
   server_name                            = module.sqlserver[0].name

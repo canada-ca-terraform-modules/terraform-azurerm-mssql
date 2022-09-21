@@ -149,3 +149,13 @@ variable "creation_source_database_id" {
   description = " (Optional) The id of the source database to be referred to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created."
   default     = null
 }
+
+variable "restore_dropped_database_id" {
+  description = " (Optional) The id of the source database to be restored to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created."
+  default     = null
+}
+
+variable "recover_database_id" {
+  description = " (Optional) The id of the source database to be reocvered to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created."
+  default     = null
+}
