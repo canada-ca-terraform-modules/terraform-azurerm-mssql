@@ -33,7 +33,9 @@ module "db" {
   count                                  = length(var.db_names)
 
   name                                   = var.db_names[count.index].name
-  resource_group_name                    = var.resource_group_name
+  resource_group_name                    = var.resource_group_name  
+  environment                            = var.environment
+
   collation                              = lookup(var.db_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
   max_size_gb                            = lookup(var.db_names[count.index], "db_max_size_gb", null)
   str_days                               = lookup(var.db_names[count.index], "str_days", "7")
@@ -44,9 +46,10 @@ module "db" {
   create_mode                            = lookup(var.db_names[count.index], "create_mode", "Default")
   creation_source_database_id            = lookup(var.db_names[count.index], "creation_source_database_id", null)
   recover_database_id                    = lookup(var.db_names[count.index], "recover_database_id", null)
-  restore_dropped_database_id            = lookup(var.db_names[count.index], "restore_dropped_database_id", null)
-  sku_name                               = lookup(var.db_names[count.index], "sku_name", null)
-  environment                            = var.environment
+  restore_dropped_database_id            = lookup(var.db_names[count.index], "restore_dropped_database_id", null)  
+  restore_point_in_time                  = lookup(var.db_names[count.index], "restore_point_in_time", null)
+  sku_name                               = lookup(var.db_names[count.index], "sku", null)
+  
   server_id                              = module.sqlserver[0].id
   server_name                            = module.sqlserver[0].name
   kv_name                                = var.kv_name
@@ -55,7 +58,6 @@ module "db" {
   sa_resource_group_name                 = var.sa_resource_group_name
   sa_primary_blob_endpoint               = module.sqlserver[0].sa_primary_blob_endpoint
   sa_primary_access_key                  = module.sqlserver[0].sa_primary_access_key
-  license_type                           = "LicenseIncluded"
 
   tags                                   = var.tags
 }
