@@ -45,10 +45,10 @@ module "db" {
   creation_source_database_id            = lookup(var.db_names[count.index], "creation_source_database_id", null)
   recover_database_id                    = lookup(var.db_names[count.index], "recover_database_id", null)
   restore_dropped_database_id            = lookup(var.db_names[count.index], "restore_dropped_database_id", null)
+  sku_name                               = lookup(var.db_names[count.index], "sku_name", null)
   environment                            = var.environment
   server_id                              = module.sqlserver[0].id
   server_name                            = module.sqlserver[0].name
-  sku_name                               = var.db_sku_names[count.index]
   kv_name                                = var.kv_name
   kv_rg                                  = var.kv_resource_group_name
   
