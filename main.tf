@@ -1,8 +1,8 @@
 module "sqlserver" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server.git?ref=development_sama"
-  
-  count = var.mssql_name == null ? 0 : 1 
-  
+
+  count = var.mssql_name == null ? 0 : 1
+
   name                                          = var.mssql_name
   environment                                   = var.environment
   location                                      = var.location
@@ -23,49 +23,49 @@ module "sqlserver" {
   active_directory_administrator_object_id      = var.active_directory_administrator_object_id
   active_directory_administrator_tenant_id      = var.active_directory_administrator_tenant_id
   emails                                        = var.emails
-  private_endpoint = var.private_endpoint
+  private_endpoint                              = var.private_endpoint
   #tags = var.tags 
 }
 
 module "db" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git?ref=development_sama"
-  
-  count                                  = length(var.db_names)
 
-  name                                   = var.db_names[count.index].name
-  resource_group_name                    = var.resource_group_name  
-  environment                            = var.environment
+  count = length(var.db_names)
 
-  collation                              = lookup(var.db_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
-  max_size_gb                            = lookup(var.db_names[count.index], "db_max_size_gb", null)
-  str_days                               = lookup(var.db_names[count.index], "str_days", "7")
-  ltr_monthly_retention                  = lookup(var.db_names[count.index], "ltr_monthly_retention", null)
-  ltr_week_of_year                       = lookup(var.db_names[count.index], "ltr_week_of_year", "52")
-  ltr_weekly_retention                   = lookup(var.db_names[count.index], "ltr_weekly_retention", "P1W")
-  ltr_yearly_retention                   = lookup(var.db_names[count.index], "ltr_yearly_retention", null)
-  create_mode                            = lookup(var.db_names[count.index], "create_mode", "Default")
-  creation_source_database_id            = lookup(var.db_names[count.index], "creation_source_database_id", null)
-  recover_database_id                    = lookup(var.db_names[count.index], "recover_database_id", null)
-  restore_dropped_database_id            = lookup(var.db_names[count.index], "restore_dropped_database_id", null)  
-  restore_point_in_time                  = lookup(var.db_names[count.index], "restore_point_in_time", null)
-  sku_name                               = lookup(var.db_names[count.index], "sku", null)
-  
-  server_id                              = module.sqlserver[0].id
-  server_name                            = module.sqlserver[0].name
-  kv_name                                = var.kv_name
-  kv_rg                                  = var.kv_resource_group_name
-  
-  sa_resource_group_name                 = var.sa_resource_group_name
-  sa_primary_blob_endpoint               = module.sqlserver[0].sa_primary_blob_endpoint
-  sa_primary_access_key                  = module.sqlserver[0].sa_primary_access_key
+  name                = var.db_names[count.index].name
+  resource_group_name = var.resource_group_name
+  environment         = var.environment
 
-  tags                                   = var.tags
+  collation                   = lookup(var.db_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
+  max_size_gb                 = lookup(var.db_names[count.index], "db_max_size_gb", null)
+  str_days                    = lookup(var.db_names[count.index], "str_days", "7")
+  ltr_monthly_retention       = lookup(var.db_names[count.index], "ltr_monthly_retention", null)
+  ltr_week_of_year            = lookup(var.db_names[count.index], "ltr_week_of_year", "52")
+  ltr_weekly_retention        = lookup(var.db_names[count.index], "ltr_weekly_retention", "P1W")
+  ltr_yearly_retention        = lookup(var.db_names[count.index], "ltr_yearly_retention", null)
+  create_mode                 = lookup(var.db_names[count.index], "create_mode", "Default")
+  creation_source_database_id = lookup(var.db_names[count.index], "creation_source_database_id", null)
+  recover_database_id         = lookup(var.db_names[count.index], "recover_database_id", null)
+  restore_dropped_database_id = lookup(var.db_names[count.index], "restore_dropped_database_id", null)
+  restore_point_in_time       = lookup(var.db_names[count.index], "restore_point_in_time", null)
+  sku_name                    = lookup(var.db_names[count.index], "sku", null)
+
+  server_id   = module.sqlserver[0].id
+  server_name = module.sqlserver[0].name
+  kv_name     = var.kv_name
+  kv_rg       = var.kv_resource_group_name
+
+  sa_resource_group_name   = var.sa_resource_group_name
+  sa_primary_blob_endpoint = module.sqlserver[0].sa_primary_blob_endpoint
+  sa_primary_access_key    = module.sqlserver[0].sa_primary_access_key
+
+  tags = var.tags
 }
 
 module "elasticpool" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.1"
-  
-  count = var.ep_names == null ?  0 : length(var.ep_names)
+
+  count = var.ep_names == null ? 0 : length(var.ep_names)
 
   name                = var.ep_names[count.index].name
   location            = var.location
