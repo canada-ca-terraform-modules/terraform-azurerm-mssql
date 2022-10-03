@@ -72,7 +72,7 @@ module "elasticpool" {
   resource_group_name = var.resource_group_name
   server_name         = module.sqlserver[0].name
   max_size_gb         = lookup(var.ep_names[count.index], "max_size_gb", null)
-  sku_name            = lookup(var.ep_names[count.index], "sku_name", null)
+  sku_name            = lookup(var.ep_names[count.index], "sku", null)
   tier                = lookup(var.ep_names[count.index], "tier", null)
   family              = lookup(var.ep_names[count.index], "family", null)
   capacity            = lookup(var.ep_names[count.index], "capacity", null)
