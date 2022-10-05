@@ -48,7 +48,7 @@ module "db" {
   recover_database_id         = lookup(var.db_names[count.index], "recover_database_id", null)
   restore_dropped_database_id = lookup(var.db_names[count.index], "restore_dropped_database_id", null)
   restore_point_in_time       = lookup(var.db_names[count.index], "restore_point_in_time", null)
-  sku_name                    = lookup(var.db_names[count.index], "sku", null)
+  sku                         = lookup(var.db_names[count.index], "sku", null)
 
   server_id   = module.sqlserver[0].id
   server_name = module.sqlserver[0].name
