@@ -52,7 +52,7 @@ No resources.
 | <a name="input_ltr_yearly_retention"></a> [ltr\_yearly\_retention](#input\_ltr\_yearly\_retention) | The yearly retention policy for an LTR backup. (1 to 120 weeks eg. P1Y, P12M, P52W, P365D) | `any` | `null` | no |
 | <a name="input_mssql_name"></a> [mssql\_name](#input\_mssql\_name) | (Required) The name of the MSSQL instance. This needs to be globally unique. Changing this forces a new resource to be created. | `any` | n/a | yes |
 | <a name="input_mssql_version"></a> [mssql\_version](#input\_mssql\_version) | The version of the MSSQL Server. | `string` | `"12.0"` | no |
-| <a name="input_private_endpoint"></a> [private\_endpoint](#input\_private\_endpoint) | MSSQL Server Virtual network subnet data | `any` | `null` | no |
+| <a name="input_private_endpoint_subnet"></a> [private\_endpoint\_subnet](#input\_private\_endpoint\_subnet) | (Optional) Options to enable private endpoint. | `any` | `null` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group in which all resources should be provisioned. | `any` | n/a | yes |
 | <a name="input_sa_resource_group_name"></a> [sa\_resource\_group\_name](#input\_sa\_resource\_group\_name) | The storageaccountinfo resource group name. | `string` | `""` | no |
 | <a name="input_str_days"></a> [str\_days](#input\_str\_days) | Short Term Retention Point in Time Restore Configuration.  Values has to be between 7 and 35 | `number` | `7` | no |

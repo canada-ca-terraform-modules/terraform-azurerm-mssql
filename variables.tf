@@ -122,11 +122,10 @@ variable "sa_resource_group_name" {
   default     = ""
 }
 
-variable "private_endpoint" {
-  description = "MSSQL Server Virtual network subnet data"
+variable "private_endpoint_subnet" {
+  description = "(Optional) Options to enable private endpoint."
   default     = null
 }
-
 
 variable "tags" {
   type = map(string)
