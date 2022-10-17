@@ -60,6 +60,7 @@ module "db" {
   sa_primary_access_key    = module.sqlserver[0].sa_primary_access_key
 
   job_agent_credentials = var.job_agent_credentials
+  location              = var.location
 
   tags = var.tags
 }
