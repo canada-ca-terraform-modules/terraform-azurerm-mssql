@@ -6,7 +6,9 @@ Creates a MSSQL instance using the Azure Managed Database for MSSQL service.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_mssqlmod"></a> [mssqlmod](#requirement\_mssqlmod) | 0.1.0 |
 
 ## Providers
 
@@ -16,7 +18,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_database"></a> [database](#module\_database) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git | development_sama |
+| <a name="module_db"></a> [db](#module\_db) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git | development_sama |
 | <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.1 |
 | <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server.git | development_sama |
 

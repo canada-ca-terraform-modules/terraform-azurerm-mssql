@@ -1,5 +1,5 @@
 output "db" {
-  value = module.database
+  value = module.db
 }
 
 output "sqlserver" {
