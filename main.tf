@@ -27,7 +27,7 @@ module "sqlserver" {
   #tags = var.tags 
 }
 
-module "db" {
+module "database" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git?ref=development_sama"
 
   count = length(var.db_names)
