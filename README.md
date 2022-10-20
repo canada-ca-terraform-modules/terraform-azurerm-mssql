@@ -6,9 +6,7 @@ Creates a MSSQL instance using the Azure Managed Database for MSSQL service.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_mssqlmod"></a> [mssqlmod](#requirement\_mssqlmod) | 0.1.0 |
+No requirements.
 
 ## Providers
 

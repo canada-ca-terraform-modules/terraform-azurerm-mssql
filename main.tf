@@ -27,18 +27,6 @@ module "sqlserver" {
   #tags = var.tags 
 }
 
-terraform {
-  required_providers {
-    mssqlmod = {
-      source  = "betr-io/mssql"
-      version = "0.1.0"
-    }
-  }
-}
-
-provider "mssqlmod" {
-  debug = "false"
-}
 
 module "db" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git?ref=development_sama"
