@@ -1,5 +1,5 @@
 module "sqlserver" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server.git?ref=development_sama"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server.git?ref=v2.0.0"
 
   count = var.mssql_name == null ? 0 : 1
 
@@ -29,7 +29,7 @@ module "sqlserver" {
 
 
 module "db" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git?ref=development_sama"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git?ref=v2.0.0"
 
   count = length(var.db_names)
 
