@@ -22,18 +22,9 @@ variable "active_directory_administrator_tenant_id" {
   default     = ""
 }
 
-variable "database_names" {
+variable "db_names" {
   type        = list(map(string))
-  description = "(Required) The name of the PostgreSQL database(s)."
-}
-
-variable "dbowner" {
-  description = "Azure Active Directory Account that will be dbowner."
-}
-
-variable "db_sku_name" {
-  description = "(Optional) Specifies the name of the sku used by the database. Only changing this from tier Hyperscale to another tier will force a new resource to be created. For example, GP_S_Gen5_2,HS_Gen4_1,BC_Gen5_2, ElasticPool, Basic,S0, P2 ,DW100c, DS100."
-  default     = null
+  description = "(Required) The name of the MSSQL database(s)."
 }
 
 variable "emails" {
@@ -51,12 +42,21 @@ variable "connection_policy" {
   default     = "Default"
 }
 
+variable "ep_names" {
+  type        = list(map(string))
+  description = "The name of the MSSQL elastic pool(s)."
+  default     = null
+}
+
 variable "firewall_rules" {
   type        = list(string)
   description = "Specifies the Start IP Address associated with this Firewall Rule."
 }
+variable "family" {
+  default = null
+}
 
-variable "keyvault_enable" {
+variable "kv_enable" {
   description = "(Optional) Enable Key Vault for passwords."
   default     = false
 }
@@ -66,12 +66,12 @@ variable "kv_name" {
   default     = ""
 }
 
-variable "kv_rg" {
+variable "kv_resource_group_name" {
   description = "The keyvault resource group."
   default     = ""
 }
 
-variable "list_of_subnets" {
+variable "subnets" {
   default = []
 }
 
@@ -99,46 +99,32 @@ variable "ltr_yearly_retention" {
   default     = null
 }
 
-variable "max_size_gb" {
-  description = "(Optional) The max data size of the elastic pool in gigabytes. Conflicts with max_size_bytes."
-  default     = null
-}
-
-variable "module_elasticpool_count" {
-  description = "The count used to determine whether or not the elasticpool module is leveraged."
-  default     = 0
-}
-
-variable "module_server_count" {
-  description = "The count used to determine whether or not the sqlserver module is leveraged."
-  default     = 1
-}
-
 variable "mssql_version" {
   description = "The version of the MSSQL Server."
   default     = "12.0"
 }
 
-variable "name" {
+variable "mssql_name" {
   description = "(Required) The name of the MSSQL instance. This needs to be globally unique. Changing this forces a new resource to be created."
 }
 
-variable "pool_sku_name" {
-  description = "(Required) Specifies the SKU Name for this Elasticpool. The name of the SKU, will be either vCore based tier + family pattern (e.g. GP_Gen4, BC_Gen5) or the DTU based BasicPool, StandardPool, or PremiumPool pattern."
-}
-
-variable "rg" {
+variable "resource_group_name" {
   description = "The resource group in which all resources should be provisioned."
 }
 
-variable "short_retentiondays" {
-  description = "Point in Time Restore Configuration.  Values has to be between 7 and 35"
+variable "str_days" {
+  description = "Short Term Retention Point in Time Restore Configuration.  Values has to be between 7 and 35"
   default     = 7
 }
 
-variable "storageaccountinfo_resource_group_name" {
+variable "sa_resource_group_name" {
   description = "The storageaccountinfo resource group name."
   default     = ""
+}
+
+variable "private_endpoint_subnet" {
+  description = "(Optional) Options to enable private endpoint."
+  default     = null
 }
 
 variable "tags" {
@@ -148,8 +134,16 @@ variable "tags" {
   }
 }
 
-variable "tier" {
-  description = "(Required) The tier of the particular SKU. Possible values are GeneralPurpose, BusinessCritical, Basic, Standard, or Premium. For more information see the documentation for your Elasticpool configuration: vCore-based or DTU-based."
+variable "create_mode" {
+  description = "(Optional) Specifies how to create the database. Must be either Default to create a new database or PointInTimeRestore to restore from a snapshot. Defaults to Default."
+  default     = null
 }
 
+variable "creation_source_database_id" {
+  description = " (Optional) The id of the source database to be referred to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created."
+  default     = null
+}
 
+variable "job_agent_credentials" {
+  description = "username and password for an elastic job agent"
+}

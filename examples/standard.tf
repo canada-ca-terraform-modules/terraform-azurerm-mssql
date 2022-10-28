@@ -1,44 +1,26 @@
 module "mssql_example" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql.git?ref=v1.1.2"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-statcan.git?ref=v2.0.0"
 
   // GLOBALS
-  name        = "mssqlservername"
-  location    = "canadacentral"
-  environment = "dev"
-  rg          = "mssql-dev-rg"
+  mssql_name          = "stdcadb-projectname"
+  location            = "canadacentral"
+  environment         = "sb"
+  resource_group_name = data.azurerm_resource_group.this.name
 
   // SERVER
-  module_server_count          = 1
-  administrator_login          = "sqlhstsvc"
-  administrator_login_password = var.administrator_login_password
   emails = [
-    "william.hearn@canada.ca",
-    "zachary.seguin@canada.ca"
+    "first.lastname@statcan.gc.ca"
   ]
   tags = {
     "tier" = "k8s"
   }
-  mssql_version = "12.0"
-  # keyvault_enable = true
-  # kv_name = ""
-  # kv_rg = ""
-  # storageaccountinfo_resource_group_name = ""
-  # active_directory_administrator_login_username = ""
-  # active_directory_administrator_object_id = ""
-  # active_directory_administrator_tenant_id = ""
-  firewall_rules  = []
-  list_of_subnets = [local.containerCCSubnetRef]
+  mssql_version  = "12.0"
+  firewall_rules = []
+  subnets        = [data.azurerm_subnet.container.id]
 
   // DB
-  database_names = [
-    { name = "mssqlservername", collation = "SQL_Latin1_General_CP437_CI_AI" }
+  db_names = [
+    { name = "mydb1", collation = "SQL_Latin1_General_CP437_CI_AI", sku = "GP_Gen5_4" }
   ]
-  db_sku_name = "GP_Gen5_4"
-  dbowner     = "firstname.lastname@cloud.statcan.ca"
-
-  // POOL
-  module_elasticpool_count = 1
-  pool_sku_name            = "BasicPool"
-  tier                     = "Basic"
-  max_size_gb              = 9.7656250
+  db_owners = ["first.lastname@cloud.statcan.ca"]
 }
