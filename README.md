@@ -16,9 +16,9 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_db"></a> [db](#module\_db) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database.git | v2.0.0 |
+| <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.0.0 |
 | <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.1 |
-| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server.git | v2.0.0 |
+| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server | v2.0.0 |
 
 ## Resources
 
@@ -84,6 +84,8 @@ Examples for this module along with various configurations can be found in the [
 
 | Date     | Release | Change                                                                         |
 |----------|---------|--------------------------------------------------------------------------------|
+| 20221004 | v2.0.1  | Release updated references to canada-ca tf github modules                      |
+| 20221028 | v2.0.0  | Release introduced streamlined and semantically named variables                |
 | 20211004 | v1.1.2  | Release introduced max_size_gb.                                                |
 | 20210908 | v1.1.1  | Release which resolves issues with multiple databases                          |
 | 20210628 | v1.1.0  | Release which pins versions and switches database names to list of map strings |
