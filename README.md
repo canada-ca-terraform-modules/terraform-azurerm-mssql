@@ -84,6 +84,8 @@ Examples for this module along with various configurations can be found in the [
 
 | Date     | Release | Change                                                                         |
 |----------|---------|--------------------------------------------------------------------------------|
+| 20221004 | v2.0.1  | Release updated references to canada-ca tf github modules                      |
+| 20221028 | v2.0.0  | Release introduced streamlined and semantically named variables                |
 | 20211004 | v1.1.2  | Release introduced max_size_gb.                                                |
 | 20210908 | v1.1.1  | Release which resolves issues with multiple databases                          |
 | 20210628 | v1.1.0  | Release which pins versions and switches database names to list of map strings |
