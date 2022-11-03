@@ -18,7 +18,7 @@ No providers.
 |------|--------|---------|
 | <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.0.0 |
 | <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.1 |
-| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server | test_sama |
+| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server | test_sama |
 
 ## Resources
 
