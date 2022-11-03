@@ -1,5 +1,5 @@
 module "sqlserver" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server?ref=v2.0.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server?ref=test_sama"
 
   count = var.mssql_name == null ? 0 : 1
 
