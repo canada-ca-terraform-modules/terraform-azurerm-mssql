@@ -1,5 +1,5 @@
 module "sqlserver" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server?ref=test_sama"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server?ref=v2.0.0"
 
   count = var.mssql_name == null ? 0 : 1
 
@@ -29,7 +29,7 @@ module "sqlserver" {
 
 
 module "db" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=development_sama"
 
   count = length(var.db_names)
 
@@ -39,6 +39,11 @@ module "db" {
 
   collation                   = lookup(var.db_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
   max_size_gb                 = lookup(var.db_names[count.index], "db_max_size_gb", null)
+  min_capacity                = lookup(var.db_names[count.index], "min_capacity", null)
+  auto_pause_delay_in_minutes = lookup(var.db_names[count.index], "auto_pause_delay_in_minutes", null)
+  read_replica_count          = lookup(var.db_names[count.index], "read_replica_count", null)
+  read_scale                  = lookup(var.db_names[count.index], "read_scale", null)
+  zone_redundant              = lookup(var.db_names[count.index], "zone_redundant", null)
   str_days                    = lookup(var.db_names[count.index], "str_days", "7")
   ltr_monthly_retention       = lookup(var.db_names[count.index], "ltr_monthly_retention", null)
   ltr_week_of_year            = lookup(var.db_names[count.index], "ltr_week_of_year", "52")
@@ -49,7 +54,8 @@ module "db" {
   recover_database_id         = lookup(var.db_names[count.index], "recover_database_id", null)
   restore_dropped_database_id = lookup(var.db_names[count.index], "restore_dropped_database_id", null)
   restore_point_in_time       = lookup(var.db_names[count.index], "restore_point_in_time", null)
-  sku                         = lookup(var.db_names[count.index], "sku", null)
+
+  sku = lookup(var.db_names[count.index], "sku", null)
 
   server_id   = module.sqlserver[0].id
   server_name = module.sqlserver[0].name
