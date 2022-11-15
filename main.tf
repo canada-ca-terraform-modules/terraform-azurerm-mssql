@@ -29,8 +29,8 @@ module "sqlserver" {
 
 
 module "db" {
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database?ref=developement_sama"
   #source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=developement_sama"
-  source = "git:https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-database?ref=developement_sama"
 
   count = length(var.db_names)
 
