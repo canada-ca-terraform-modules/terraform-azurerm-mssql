@@ -41,7 +41,7 @@ module "db" {
   collation                   = lookup(var.db_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
   max_size_gb                 = lookup(var.db_names[count.index], "db_max_size_gb", null)
   min_capacity                = lookup(var.db_names[count.index], "min_capacity", 0.5)
-  auto_pause_delay_in_minutes = lookup(var.db_names[count.index], "auto_pause_delay_in_minutes", 0)
+  auto_pause_delay_in_minutes = lookup(var.db_names[count.index], "auto_pause_delay_in_minutes", 1)
   read_replica_count          = lookup(var.db_names[count.index], "read_replica_count", 0)
   read_scale                  = lookup(var.db_names[count.index], "read_scale", null)
   zone_redundant              = lookup(var.db_names[count.index], "zone_redundant", null)
