@@ -27,14 +27,35 @@ module "sqlserver" {
   #tags = var.tags 
 }
 
+module "elasticpool" {
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
+
+  count = var.ep_names == null ? 0 : length(var.ep_names)
+
+  name                = var.ep_names[count.index].name
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  server_name         = module.sqlserver[0].name
+  max_size_gb         = lookup(var.ep_names[count.index], "max_size_gb", null)
+  sku_name            = lookup(var.ep_names[count.index], "sku", null)
+  tier                = lookup(var.ep_names[count.index], "tier", null)
+  family              = lookup(var.ep_names[count.index], "family", null)
+  capacity            = lookup(var.ep_names[count.index], "capacity", null)
+  min_capacity        = lookup(var.ep_names[count.index], "min_capacity", null)
+  max_capacity        = lookup(var.ep_names[count.index], "max_capacity", null)
+  tags                = var.tags
+}
+
 
 module "db" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.1"
+  #  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.1"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-database?ref=dev2"
 
   count = length(var.db_names)
 
   name                = var.db_names[count.index].name
   resource_group_name = var.resource_group_name
+  location            = var.location
   environment         = var.environment
 
   collation                   = lookup(var.db_names[count.index], "collation", "SQL_Latin1_General_CP1_CI_AS")
@@ -54,40 +75,23 @@ module "db" {
   recover_database_id         = lookup(var.db_names[count.index], "recover_database_id", null)
   restore_dropped_database_id = lookup(var.db_names[count.index], "restore_dropped_database_id", null)
   restore_point_in_time       = lookup(var.db_names[count.index], "restore_point_in_time", null)
-
-  sku = lookup(var.db_names[count.index], "sku", null)
+  sku                         = lookup(var.db_names[count.index], "sku", null)
 
   server_id   = module.sqlserver[0].id
   server_name = module.sqlserver[0].name
-  kv_name     = var.kv_name
-  kv_rg       = var.kv_resource_group_name
+
+  elastic_pool_id = var.ep_names == null ? null : module.elasticpool[0].elasticpool.id
+
+  kv_name = var.kv_name
+  kv_rg   = var.kv_resource_group_name
 
   sa_resource_group_name   = var.sa_resource_group_name
   sa_primary_blob_endpoint = module.sqlserver[0].sa_primary_blob_endpoint
   sa_primary_access_key    = module.sqlserver[0].sa_primary_access_key
 
   job_agent_credentials = var.job_agent_credentials
-  location              = var.location
 
   tags = var.tags
 }
 
-module "elasticpool" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.1"
-
-  count = var.ep_names == null ? 0 : length(var.ep_names)
-
-  name                = var.ep_names[count.index].name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  server_name         = module.sqlserver[0].name
-  max_size_gb         = lookup(var.ep_names[count.index], "max_size_gb", null)
-  sku_name            = lookup(var.ep_names[count.index], "sku", null)
-  tier                = lookup(var.ep_names[count.index], "tier", null)
-  family              = lookup(var.ep_names[count.index], "family", null)
-  capacity            = lookup(var.ep_names[count.index], "capacity", null)
-  min_capacity        = lookup(var.ep_names[count.index], "min_capacity", null)
-  max_capacity        = lookup(var.ep_names[count.index], "max_capacity", null)
-  tags                = var.tags
-}
 

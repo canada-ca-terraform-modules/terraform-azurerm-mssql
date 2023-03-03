@@ -1,7 +1,9 @@
 # Terraform for Azure Managed Database MSSQL
 
+## Summary
 Creates a MSSQL instance using the Azure Managed Database for MSSQL service.
-
+Examples for using the module can be found in the [examples/](examples/) folder.
+Changelog can be found in CHANGELOG.md
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -16,8 +18,8 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.0.1 |
-| <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.1 |
+| <a name="module_db"></a> [db](#module\_db) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-database | dev2 |
+| <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.2 |
 | <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server | v2.0.0 |
 
 ## Resources
@@ -68,17 +70,6 @@ No resources.
 | <a name="output_elasticpool"></a> [elasticpool](#output\_elasticpool) | n/a |
 | <a name="output_sqlserver"></a> [sqlserver](#output\_sqlserver) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-
-## Security Controls
-
-- Adheres to the [CIS Microsoft Azure Foundations Benchmark 1.3.0](https://docs.microsoft.com/en-us/azure/governance/policy/samples/cis-azure-1-3-0) for Database Services.
-
-
-## Usage
-
-Examples for this module along with various configurations can be found in the [examples/](examples/) folder.
-
 
 ## History
 
