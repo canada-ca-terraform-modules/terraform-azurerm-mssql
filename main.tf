@@ -29,7 +29,7 @@ module "sqlserver" {
 
 module "elasticpool" {
   #source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-elasticpool?ref=v1.0.2"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-elasticpool?ref=patch"
   count  = var.ep_names == null ? 0 : length(var.ep_names)
 
   name                = var.ep_names[count.index].name

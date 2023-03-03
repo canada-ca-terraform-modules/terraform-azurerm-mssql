@@ -19,7 +19,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_db"></a> [db](#module\_db) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-database | dev2 |
-| <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-elasticpool | v1.0.2 |
+| <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-elasticpool | patch |
 | <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server | v2.0.0 |
 
 ## Resources
