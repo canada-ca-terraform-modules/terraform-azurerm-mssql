@@ -24,13 +24,13 @@ module "sqlserver" {
   active_directory_administrator_tenant_id      = var.active_directory_administrator_tenant_id
   emails                                        = var.emails
   private_endpoint_subnet                       = var.private_endpoint_subnet
-  #tags = var.tags 
+  tags                                          = var.tags
 }
 
 module "elasticpool" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
-
-  count = var.ep_names == null ? 0 : length(var.ep_names)
+  #source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-elasticpool?ref=v1.0.2"
+  count  = var.ep_names == null ? 0 : length(var.ep_names)
 
   name                = var.ep_names[count.index].name
   location            = var.location
@@ -43,7 +43,7 @@ module "elasticpool" {
   capacity            = lookup(var.ep_names[count.index], "capacity", null)
   min_capacity        = lookup(var.ep_names[count.index], "min_capacity", null)
   max_capacity        = lookup(var.ep_names[count.index], "max_capacity", null)
-  tags                = var.tags
+  #tags                = var.tags
 }
 
 
