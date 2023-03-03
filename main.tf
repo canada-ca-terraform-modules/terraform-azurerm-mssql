@@ -24,7 +24,7 @@ module "sqlserver" {
   active_directory_administrator_tenant_id      = var.active_directory_administrator_tenant_id
   emails                                        = var.emails
   private_endpoint_subnet                       = var.private_endpoint_subnet
-  tags                                          = var.tags
+  #tags                                          = var.tags
 }
 
 module "elasticpool" {
