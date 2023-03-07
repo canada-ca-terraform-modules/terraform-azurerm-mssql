@@ -122,11 +122,6 @@ variable "sa_resource_group_name" {
   default     = ""
 }
 
-variable "private_endpoint_subnet" {
-  description = "(Optional) Options to enable private endpoint."
-  default     = null
-}
-
 variable "tags" {
   type = map(string)
   default = {
@@ -146,4 +141,14 @@ variable "creation_source_database_id" {
 
 variable "job_agent_credentials" {
   description = "username and password for an elastic job agent"
+}
+
+variable "private_endpoint_subnet_id" {
+  description = "(Optional) Options to enable private endpoint"
+  default     = null
+}
+
+variable "private_dns_zone_ids" {
+  description = "(Optional) Specifies the list of Private DNS Zones to include within the private_dns_zone_group"
+  default     = null
 }

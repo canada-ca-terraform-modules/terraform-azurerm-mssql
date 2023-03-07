@@ -24,3 +24,48 @@ module "mssql_example" {
   ]
   db_owners = ["first.lastname@cloud.statcan.ca"]
 }
+
+module "mssql" {
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql?ref=test_sama"
+
+  // GLOBALS
+  mssql_name          = "sqlservernam"
+  location            = "canadacentral"
+  environment         = "dev"
+  resource_group_name = "resourcegroupname"
+  mssql_version       = "12.0"
+
+  db_names = [
+    { name = "dbname", collation = "SQL_Latin1_General_CP437_CI_AI", sku = "GP_Gen5_4" }
+  ]
+
+  job_agent_credentials = var.job_agent_credentials
+
+  firewall_rules = var.firewall_rules
+  subnets        = var.subnets
+
+  emails = ["email@domain.ca"]
+  tags   = {}
+
+
+
+  #Optional Keyvault Params
+  kv_name                = local.kv_name
+  kv_resource_group_name = local.kv_resource_group_name
+  kv_enable              = var.kv_enable
+  sa_resource_group_name = local.sa_resource_group_name
+
+  #Optional Server Params
+  administrator_login                           = ""
+  administrator_login_password                  = ""
+  active_directory_administrator_login_username = ""
+  active_directory_administrator_object_id      = ""
+  active_directory_administrator_tenant_id      = ""
+
+  #Optional Connection Params
+  connection_policy       = var.connection_policy
+  private_endpoint_subnet = var.private_endpoint_subnetid
+
+
+
+}

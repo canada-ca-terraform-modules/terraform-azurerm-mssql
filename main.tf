@@ -1,5 +1,5 @@
 module "sqlserver" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server?ref=v2.0.0"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server?ref=test_sama_2"
 
   count = var.mssql_name == null ? 0 : 1
 
@@ -23,8 +23,9 @@ module "sqlserver" {
   active_directory_administrator_object_id      = var.active_directory_administrator_object_id
   active_directory_administrator_tenant_id      = var.active_directory_administrator_tenant_id
   emails                                        = var.emails
-  private_endpoint_subnet                       = var.private_endpoint_subnet
-  #tags                                          = var.tags
+  private_endpoint_subnet_id                    = var.private_endpoint_subnet_id
+  private_dns_zone_ids                          = var.private_dns_zone_ids
+  tags                                          = var.tags
 }
 
 module "elasticpool" {
@@ -75,7 +76,7 @@ module "db" {
   recover_database_id         = lookup(var.db_names[count.index], "recover_database_id", null)
   restore_dropped_database_id = lookup(var.db_names[count.index], "restore_dropped_database_id", null)
   restore_point_in_time       = lookup(var.db_names[count.index], "restore_point_in_time", null)
-  sku                         = lookup(var.db_names[count.index], "sku", "")
+  sku                         = lookup(var.db_names[count.index], "sku", null)
 
   server_id   = module.sqlserver[0].id
   server_name = module.sqlserver[0].name
