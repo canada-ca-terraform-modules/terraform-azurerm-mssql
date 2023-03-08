@@ -55,6 +55,7 @@ No resources.
 | <a name="input_ltr_yearly_retention"></a> [ltr\_yearly\_retention](#input\_ltr\_yearly\_retention) | The yearly retention policy for an LTR backup. (1 to 120 weeks eg. P1Y, P12M, P52W, P365D) | `any` | `null` | no |
 | <a name="input_mssql_name"></a> [mssql\_name](#input\_mssql\_name) | (Required) The name of the MSSQL instance. This needs to be globally unique. Changing this forces a new resource to be created. | `any` | n/a | yes |
 | <a name="input_mssql_version"></a> [mssql\_version](#input\_mssql\_version) | The version of the MSSQL Server. | `string` | `"12.0"` | no |
+| <a name="input_primary_mi_id"></a> [primary\_mi\_id](#input\_primary\_mi\_id) | n/a | `any` | `null` | no |
 | <a name="input_private_dns_zone_ids"></a> [private\_dns\_zone\_ids](#input\_private\_dns\_zone\_ids) | (Optional) Specifies the list of Private DNS Zones to include within the private\_dns\_zone\_group | `any` | `null` | no |
 | <a name="input_private_endpoint_subnet_id"></a> [private\_endpoint\_subnet\_id](#input\_private\_endpoint\_subnet\_id) | (Optional) Options to enable private endpoint | `any` | `null` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group in which all resources should be provisioned. | `any` | n/a | yes |

@@ -26,6 +26,7 @@ module "sqlserver" {
   private_endpoint_subnet_id                    = var.private_endpoint_subnet_id
   private_dns_zone_ids                          = var.private_dns_zone_ids
   tags                                          = var.tags
+  primary_mi_id                                 = var.primary_mi_id
 }
 
 module "elasticpool" {

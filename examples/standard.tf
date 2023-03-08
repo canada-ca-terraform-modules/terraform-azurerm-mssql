@@ -29,10 +29,10 @@ module "mssql" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql?ref=test_sama"
 
   // GLOBALS
-  mssql_name          = "sqlservernam"
+  mssql_name          = "sqlservername001"
   location            = "canadacentral"
   environment         = "dev"
-  resource_group_name = "resourcegroupname"
+  resource_group_name = "hosting-sql-dev-rg"
   mssql_version       = "12.0"
 
   db_names = [
@@ -63,8 +63,11 @@ module "mssql" {
   active_directory_administrator_tenant_id      = ""
 
   #Optional Connection Params
-  connection_policy       = var.connection_policy
-  private_endpoint_subnet = var.private_endpoint_subnetid
+  connection_policy = var.connection_policy
+
+  #[Optional] Private Endpoint
+  private_endpoint_subnet_id = []
+
 
 
 

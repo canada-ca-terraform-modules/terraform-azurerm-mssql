@@ -152,3 +152,7 @@ variable "private_dns_zone_ids" {
   description = "(Optional) Specifies the list of Private DNS Zones to include within the private_dns_zone_group"
   default     = null
 }
+
+variable "primary_mi_id" {
+  default = null
+}
