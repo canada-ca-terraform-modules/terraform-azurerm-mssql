@@ -7,7 +7,6 @@ module "sqlserver" {
   environment                                   = var.environment
   location                                      = var.location
   resource_group_name                           = var.resource_group_name
-  dependencies                                  = []
   mssql_version                                 = var.mssql_version
   subnets                                       = var.subnets
   ssl_minimal_tls_version_enforced              = "1.2"
