@@ -1,5 +1,5 @@
 module "sqlserver" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-server?ref=test_sama_2"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.1"
 
   count = var.mssql_name == null ? 0 : 1
 
@@ -29,9 +29,9 @@ module "sqlserver" {
 }
 
 module "elasticpool" {
-  #source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-elasticpool?ref=patch"
-  count  = var.ep_names == null ? 0 : length(var.ep_names)
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
+
+  count = var.ep_names == null ? 0 : length(var.ep_names)
 
   name                = var.ep_names[count.index].name
   location            = var.location
@@ -44,13 +44,12 @@ module "elasticpool" {
   capacity            = lookup(var.ep_names[count.index], "capacity", null)
   min_capacity        = lookup(var.ep_names[count.index], "min_capacity", null)
   max_capacity        = lookup(var.ep_names[count.index], "max_capacity", null)
-  #tags                = var.tags
+  tags                = var.tags
 }
 
 
 module "db" {
-  #  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.1"
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-database?ref=dev2"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.2"
 
   count = length(var.db_names)
 

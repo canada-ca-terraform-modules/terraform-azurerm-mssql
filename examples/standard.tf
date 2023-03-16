@@ -33,7 +33,7 @@ module "mssql" {
   location            = "canadacentral"
   environment         = "dev"
   resource_group_name = "hosting-sql-dev-rg"
-  mssql_version       = "12.0"
+
 
   db_names = [
     { name = "dbname", collation = "SQL_Latin1_General_CP437_CI_AI", sku = "GP_Gen5_4" }
@@ -48,7 +48,7 @@ module "mssql" {
   tags   = {}
 
 
-
+  mssql_version = "12.0"
   #Optional Keyvault Params
   kv_name                = local.kv_name
   kv_resource_group_name = local.kv_resource_group_name
