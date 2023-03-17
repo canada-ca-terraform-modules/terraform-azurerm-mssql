@@ -66,7 +66,7 @@ variable "kv_name" {
   default     = ""
 }
 
-variable "kv_rg" {
+variable "kv_resource_group_name" {
   description = "The keyvault resource group."
   default     = ""
 }
