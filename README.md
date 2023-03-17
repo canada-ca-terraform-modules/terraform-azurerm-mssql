@@ -42,10 +42,10 @@ No resources.
 | <a name="input_ep_names"></a> [ep\_names](#input\_ep\_names) | The name of the MSSQL elastic pool(s). | `list(map(string))` | `null` | no |
 | <a name="input_family"></a> [family](#input\_family) | n/a | `any` | `null` | no |
 | <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | Specifies the Start IP Address associated with this Firewall Rule. | `list(string)` | n/a | yes |
-| <a name="input_job_agent_credentials"></a> [job\_agent\_credentials](#input\_job\_agent\_credentials) | username and password for an elastic job agent | `any` | n/a | yes |
+| <a name="input_job_agent_credentials"></a> [job\_agent\_credentials](#input\_job\_agent\_credentials) | username and password for an elastic job agent | `any` | `null` | no |
 | <a name="input_kv_enable"></a> [kv\_enable](#input\_kv\_enable) | (Optional) Enable Key Vault for passwords. | `bool` | `false` | no |
 | <a name="input_kv_name"></a> [kv\_name](#input\_kv\_name) | The keyvault name. | `string` | `""` | no |
-| <a name="input_kv_resource_group_name"></a> [kv\_resource\_group\_name](#input\_kv\_resource\_group\_name) | The keyvault resource group. | `string` | `""` | no |
+| <a name="input_kv_rg"></a> [kv\_rg](#input\_kv\_rg) | The keyvault resource group. | `string` | `""` | no |
 | <a name="input_location"></a> [location](#input\_location) | The Azure Region in which all resources should be provisioned. | `any` | n/a | yes |
 | <a name="input_mssql_name"></a> [mssql\_name](#input\_mssql\_name) | (Required) The name of the MSSQL instance. This needs to be globally unique. Changing this forces a new resource to be created. | `any` | n/a | yes |
 | <a name="input_mssql_version"></a> [mssql\_version](#input\_mssql\_version) | The version of the MSSQL Server. | `string` | `"12.0"` | no |

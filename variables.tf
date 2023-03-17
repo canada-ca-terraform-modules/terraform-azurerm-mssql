@@ -66,7 +66,7 @@ variable "kv_name" {
   default     = ""
 }
 
-variable "kv_resource_group_name" {
+variable "kv_rg" {
   description = "The keyvault resource group."
   default     = ""
 }
@@ -111,6 +111,7 @@ variable "tags" {
 
 variable "job_agent_credentials" {
   description = "username and password for an elastic job agent"
+  default     = null
 }
 
 variable "private_endpoint_subnet_id" {
