@@ -29,7 +29,7 @@ module "sqlserver" {
 }
 
 module "elasticpool" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.1"
 
   count = var.ep_names == null ? 0 : length(var.ep_names)
 
