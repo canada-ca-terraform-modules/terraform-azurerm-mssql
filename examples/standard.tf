@@ -72,3 +72,61 @@ module "mssql" {
 
 
 }
+
+
+module "mssql" {
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql?ref=test_sama"
+
+  // GLOBALS
+  mssql_name          = var.mssql_name
+  location            = var.location
+  environment         = var.environment
+  resource_group_name = var.resource_group_name
+
+  // KEYVAULT
+  kv_name                = local.kv_name
+  kv_resource_group_name = local.kv_resource_group_name
+  kv_enable              = var.kv_enable
+  sa_resource_group_name = local.sa_resource_group_name
+
+  // SERVER
+  mssql_version                                 = var.mssql_version
+  administrator_login                           = var.administrator_login
+  administrator_login_password                  = var.administrator_login_password
+  active_directory_administrator_login_username = "Hosting-SQL"
+  active_directory_administrator_object_id      = "124d16c2-ef85-4359-964d-26b4016c6807"
+  active_directory_administrator_tenant_id      = "258f1f99-ee3d-42c7-bfc5-7af1b2343e02"
+  emails = concat([
+    "arthur.quenneville@statcan.gc.ca",
+    "tristan.wrubleski@statcan.gc.ca",
+    "sama.mahmoud@statcan.gc.ca"],
+    var.emails
+  )
+  connection_policy = var.connection_policy
+  firewall_rules    = var.firewall_rules
+  subnets           = var.subnets
+
+  // PRIVATE ENDPOINTS
+  private_endpoint_subnet_id = var.private_endpoint_subnet_id
+  private_dns_zone_ids       = var.private_dns_zone_ids
+
+  // DB
+  db_names              = var.db_names
+  job_agent_credentials = var.job_agent_credentials
+
+  // ELASTIC POOL
+  ep_names = var.ep_names
+
+  // USER ASSIGNED MANAGED IDENTITY
+  primary_mi_id = var.primary_mi_id
+
+  tags = merge({
+    "serviceLine"        = "sqlazdb"
+    "tier"               = "back"
+    "buildVersion"       = "v1"
+    "buildCertification" = "Yes"
+    "supportTeam"        = "hosting-sql"
+    "terraformModule" = "mssqldb?ref=v2.0.4" },
+    var.tags
+  )
+}
