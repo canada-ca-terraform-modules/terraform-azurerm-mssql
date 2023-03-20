@@ -1,26 +1,59 @@
-module "mssql_example" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql-statcan.git?ref=v2.0.0"
+module "mssql" {
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql?ref=test_sama"
 
-  // GLOBALS
-  mssql_name          = "stdcadb-projectname"
+  mssql_name          = "sqlservername001"
   location            = "canadacentral"
-  environment         = "sb"
-  resource_group_name = data.azurerm_resource_group.this.name
+  environment         = "dev"
+  resource_group_name = "hosting-sql-dev-rg"
 
-  // SERVER
-  emails = [
-    "first.lastname@statcan.gc.ca"
-  ]
-  tags = {
-    "tier" = "k8s"
-  }
-  mssql_version  = "12.0"
-  firewall_rules = []
-  subnets        = [data.azurerm_subnet.container.id]
+  administrator_login                           = ""
+  administrator_login_password                  = ""
+  active_directory_administrator_login_username = ""
+  active_directory_administrator_object_id      = ""
+  active_directory_administrator_tenant_id      = ""
 
-  // DB
+  kv_enable              = true
+  kv_name                = "hostingops-sql-dev-kv"
+  kv_resource_group_name = "hostingops-sql-dev-rg"
+  sa_resource_group_name = "hostingops-sql-dev-rg"
+
+  firewall_rules = var.firewall_rules
+
   db_names = [
-    { name = "mydb1", collation = "SQL_Latin1_General_CP437_CI_AI", sku = "GP_Gen5_4" }
+    { name = "dbname", collation = "SQL_Latin1_General_CP437_CI_AI", sku = "GP_Gen5_4" }
   ]
-  db_owners = ["first.lastname@cloud.statcan.ca"]
+
+  /*
+  [Optional] Configurations 
+  #mssql_version                                 = "12.0"
+  #emails                                        = ["name@domain.ca"]
+  #retention_days                                = 90
+  */
+
+  /*
+  #[Optional] Elastic Pool Configurations
+  ep_names = [
+    { name = "standard_dev_pool_01", max_size_gb = 4.8828125, sku = "BasicPool", tier = "Basic", capacity = 50, max_capacity = 5, min_capacity = 0}
+  ]
+  */
+
+  /*
+  #[Optional] Firewall Configurations
+  #subnets                                       = [data.azurerm_subnet.devcc-back.id]
+  #ssl_minimal_tls_version_enforced              = "1.2"
+  #connection_policy                             = "Default"
+  */
+
+  /*
+  #[Optional] User Assigned Managed Identity Configurations
+  primary_mi_id = "abcdefg1234567"
+  */
+
+  /*
+  #[Optional] Private Endpoint Configurations
+  private_endpoint_subnet_id                    = [data.azurerm_subnet.devcc-back.id]
+  private_dns_zone_ids                          = [data.azurerm_private_dns_zone.mssql.id]
+  */
+
+  tags = { "key" : "value" }
 }

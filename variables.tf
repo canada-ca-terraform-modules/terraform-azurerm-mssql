@@ -79,26 +79,6 @@ variable "location" {
   description = "The Azure Region in which all resources should be provisioned."
 }
 
-variable "ltr_monthly_retention" {
-  description = "The monthly retention policy for an LTR backup. (1 to 120 weeks eg. P1Y, P1M, P4W, P30D)"
-  default     = null
-}
-
-variable "ltr_week_of_year" {
-  description = "The week of the year to take the yearly backup.  Value has to be between 1 and 52."
-  default     = 52
-}
-
-variable "ltr_weekly_retention" {
-  description = "The weekly retention policy for an LTR backup. (1 to 520 weeks eg. P1Y, P1M, P1W, P7D)"
-  default     = "P1W"
-}
-
-variable "ltr_yearly_retention" {
-  description = "The yearly retention policy for an LTR backup. (1 to 120 weeks eg. P1Y, P12M, P52W, P365D)"
-  default     = null
-}
-
 variable "mssql_version" {
   description = "The version of the MSSQL Server."
   default     = "12.0"
@@ -122,11 +102,6 @@ variable "sa_resource_group_name" {
   default     = ""
 }
 
-variable "private_endpoint_subnet" {
-  description = "(Optional) Options to enable private endpoint."
-  default     = null
-}
-
 variable "tags" {
   type = map(string)
   default = {
@@ -134,16 +109,21 @@ variable "tags" {
   }
 }
 
-variable "create_mode" {
-  description = "(Optional) Specifies how to create the database. Must be either Default to create a new database or PointInTimeRestore to restore from a snapshot. Defaults to Default."
-  default     = null
-}
-
-variable "creation_source_database_id" {
-  description = " (Optional) The id of the source database to be referred to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created."
-  default     = null
-}
-
 variable "job_agent_credentials" {
   description = "username and password for an elastic job agent"
+  default     = null
+}
+
+variable "private_endpoint_subnet_id" {
+  description = "(Optional) Options to enable private endpoint"
+  default     = null
+}
+
+variable "private_dns_zone_ids" {
+  description = "(Optional) Specifies the list of Private DNS Zones to include within the private_dns_zone_group"
+  default     = null
+}
+
+variable "primary_mi_id" {
+  default = null
 }
