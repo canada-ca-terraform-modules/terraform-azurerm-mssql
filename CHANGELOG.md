@@ -11,7 +11,7 @@ ENHANCEMENTS:
 BUG FIXES:
 
 
-## 2.0.2 (March 17, 2022)
+## 2.0.2 (Nov 2, 2022)
 
 FEATURES:
 
@@ -21,7 +21,7 @@ ENHANCEMENTS:
 BUG FIXES:
 
 
-## 2.0.1 (March 17, 2022)
+## 2.0.1 (Oct 26, 2022)
 
 FEATURES:
 
