@@ -1,5 +1,5 @@
 module "mssql" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/terraform-azurerm-mssql?ref=test_sama"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql?ref=v2.0.3"
 
   mssql_name          = "sqlservername001"
   location            = "canadacentral"
