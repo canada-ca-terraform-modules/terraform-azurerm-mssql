@@ -29,9 +29,9 @@ module "sqlserver" {
 }
 
 module "elasticpool" {
-  #source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.1"
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-elasticpool?ref=master"
-  count  = var.ep_names == null ? 0 : length(var.ep_names)
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
+
+  count = var.ep_names == null ? 0 : length(var.ep_names)
 
   name                = var.ep_names[count.index].name
   location            = var.location

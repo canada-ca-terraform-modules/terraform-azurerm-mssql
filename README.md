@@ -1,9 +1,20 @@
 # Terraform for Azure Managed Database MSSQL
 
+**Current Version:** v2.0.3
+
 ## Summary
-Creates a MSSQL instance using the Azure Managed Database for MSSQL service.
+Creates an MSSQL Server, Database and Elastic Pools.
 Examples for using the module can be found in the [examples/](examples/) folder.
 Changelog can be found in CHANGELOG.md
+
+Using this module you will be able to create:
+- [Azure SQL Server](https://docs.microsoft.com/en-us/azure/azure-sql)
+- [Azure SQL DB](https://docs.microsoft.com/en-us/azure/azure-sql)
+- [Azure SQL Database Elastic Pool](https://learn.microsoft.com/en-us/azure/azure-sql/database/elastic-pool-overview?view=azuresql)
+
+### User Input Requirement
+
+See inputs and examples for reference.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -19,7 +30,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.0.2 |
-| <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-elasticpool | master |
+| <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.2 |
 | <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git | v2.0.1 |
 
 ## Resources
@@ -66,16 +77,3 @@ No resources.
 | <a name="output_elasticpool"></a> [elasticpool](#output\_elasticpool) | n/a |
 | <a name="output_sqlserver"></a> [sqlserver](#output\_sqlserver) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-## History
-
-| Date     | Release | Change                                                                         |
-|----------|---------|--------------------------------------------------------------------------------|
-| 20221004 | v2.0.1  | Release updated references to canada-ca tf github modules                      |
-| 20221028 | v2.0.0  | Release introduced streamlined and semantically named variables                |
-| 20211004 | v1.1.2  | Release introduced max_size_gb.                                                |
-| 20210908 | v1.1.1  | Release which resolves issues with multiple databases                          |
-| 20210628 | v1.1.0  | Release which pins versions and switches database names to list of map strings |
-| 20210511 | v1.0.2  | Release which uses database_names var to determine count for database spec     |
-| 20210509 | v1.0.1  | Release which switches to multi module setup for elasticpool                   |
-| 20210207 | v1.0.0  | Release of Terraform module                                                    |
