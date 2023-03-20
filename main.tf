@@ -45,6 +45,10 @@ module "elasticpool" {
   min_capacity        = lookup(var.ep_names[count.index], "min_capacity", null)
   max_capacity        = lookup(var.ep_names[count.index], "max_capacity", null)
   tags                = var.tags
+
+  depends_on = [
+    module.sqlserver
+  ]
 }
 
 
@@ -92,6 +96,11 @@ module "db" {
   job_agent_credentials = var.job_agent_credentials
 
   tags = var.tags
+
+  depends_on = [
+    module.sqlserver,
+    module.elasticpool
+  ]
 }
 
 
