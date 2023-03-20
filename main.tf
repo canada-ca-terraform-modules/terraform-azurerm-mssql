@@ -84,7 +84,7 @@ module "db" {
   server_id   = module.sqlserver[0].id
   server_name = module.sqlserver[0].name
 
-  elastic_pool_id = var.ep_names == null ? null : module.elasticpool.elasticpool.id
+  elastic_pool_id = var.ep_names == null ? null : module.elasticpool[0].elasticpool.id
 
   kv_name = var.kv_name
   kv_rg   = var.kv_resource_group_name
