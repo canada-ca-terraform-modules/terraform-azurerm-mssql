@@ -1,6 +1,6 @@
 # Terraform for Azure Managed Database MSSQL
 
-**Current Version:** v2.0.3
+**Current Version:** v2.0.4
 
 ## Summary
 Creates an MSSQL Server, Database and Elastic Pools.
@@ -29,9 +29,9 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.0.2 |
+| <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.0.3 |
 | <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.2 |
-| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git | v2.0.1 |
+| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server | v2.0.2 |
 
 ## Resources
 
@@ -41,13 +41,14 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_account_replication_type"></a> [account\_replication\_type](#input\_account\_replication\_type) | (Required) Defines the type of replication to use for this storage account. Valid options are LRS, GRS, RAGRS, ZRS, GZRS and RAGZRS. | `string` | `"LRS"` | no |
 | <a name="input_active_directory_administrator_login_username"></a> [active\_directory\_administrator\_login\_username](#input\_active\_directory\_administrator\_login\_username) | The Active Directory Administrator Login Username. | `string` | `""` | no |
 | <a name="input_active_directory_administrator_object_id"></a> [active\_directory\_administrator\_object\_id](#input\_active\_directory\_administrator\_object\_id) | The Active Directory Administrator Object ID. | `string` | `""` | no |
 | <a name="input_active_directory_administrator_tenant_id"></a> [active\_directory\_administrator\_tenant\_id](#input\_active\_directory\_administrator\_tenant\_id) | The Active Directory Administrator Tenant ID. | `string` | `""` | no |
 | <a name="input_administrator_login"></a> [administrator\_login](#input\_administrator\_login) | The Administrator Login for the MSSQL Server | `string` | `"sqlhstsvc"` | no |
 | <a name="input_administrator_login_password"></a> [administrator\_login\_password](#input\_administrator\_login\_password) | (Required) The Password associated with the administrator\_login for the PostgreSQL Server. | `any` | n/a | yes |
 | <a name="input_connection_policy"></a> [connection\_policy](#input\_connection\_policy) | The connection policy the server will use (Default, Proxy or Redirect) | `string` | `"Default"` | no |
-| <a name="input_db_names"></a> [db\_names](#input\_db\_names) | (Required) The name of the MSSQL database(s). | `list(map(string))` | n/a | yes |
+| <a name="input_db_names"></a> [db\_names](#input\_db\_names) | (Required) The name of the MSSQL database(s). | `any` | n/a | yes |
 | <a name="input_emails"></a> [emails](#input\_emails) | List of email addresses that should recieve the security reports. | `list(string)` | `[]` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | The environment used for keyvault access. | `any` | n/a | yes |
 | <a name="input_ep_names"></a> [ep\_names](#input\_ep\_names) | The name of the MSSQL elastic pool(s). | `list(map(string))` | `null` | no |

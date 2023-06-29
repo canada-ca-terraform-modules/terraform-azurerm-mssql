@@ -23,7 +23,6 @@ variable "active_directory_administrator_tenant_id" {
 }
 
 variable "db_names" {
-  type        = list(map(string))
   description = "(Required) The name of the MSSQL database(s)."
 }
 
@@ -126,4 +125,9 @@ variable "private_dns_zone_ids" {
 
 variable "primary_mi_id" {
   default = null
+}
+
+variable "account_replication_type" {
+  description = "(Required) Defines the type of replication to use for this storage account. Valid options are LRS, GRS, RAGRS, ZRS, GZRS and RAGZRS."
+  default     = "LRS"
 }

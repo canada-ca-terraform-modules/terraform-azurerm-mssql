@@ -1,4 +1,14 @@
-## 2.0.3 (March 17, 2022)
+## 2.0.4 (June 29, 2023)
+
+FEATURES:
+
+ENHANCEMENTS:
+* `sqlserver` - added storage account replication type
+* `db` - restructured to use for each
+
+BUG FIXES:
+
+## 2.0.3 (March 17, 2023)
 
 FEATURES:
 
