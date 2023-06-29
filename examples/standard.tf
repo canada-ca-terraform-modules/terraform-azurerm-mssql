@@ -28,6 +28,8 @@ module "mssql" {
   #mssql_version                                 = "12.0"
   #emails                                        = ["name@domain.ca"]
   #retention_days                                = 90
+  #account_replication_type                      = "ZRS"
+
   */
 
   /*
