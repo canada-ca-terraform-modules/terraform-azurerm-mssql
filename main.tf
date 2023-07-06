@@ -20,8 +20,7 @@ module "sqlserver" {
   active_directory_administrator_object_id      = var.active_directory_administrator_object_id
   active_directory_administrator_tenant_id      = var.active_directory_administrator_tenant_id
   emails                                        = var.emails
-  private_endpoint_subnet_id                    = var.private_endpoint_subnet_id
-  private_dns_zone_ids                          = var.private_dns_zone_ids
+  private_endpoints                             = var.private_endpoints
   tags                                          = var.tags
   primary_mi_id                                 = var.primary_mi_id
   account_replication_type                      = var.account_replication_type
@@ -30,19 +29,19 @@ module "sqlserver" {
 module "elasticpool" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
 
-  count = var.ep_names == null ? 0 : length(var.ep_names)
+  for_each = var.ep_names
 
-  name                = lookup(var.ep_names[0], "name", null)
+  name                = each.key
   location            = var.location
   resource_group_name = var.resource_group_name
   server_name         = module.sqlserver.name
-  max_size_gb         = lookup(var.ep_names[0], "max_size_gb", null)
-  sku_name            = lookup(var.ep_names[0], "sku", null)
-  tier                = lookup(var.ep_names[0], "tier", null)
-  family              = lookup(var.ep_names[0], "family", null)
-  capacity            = lookup(var.ep_names[0], "capacity", null)
-  min_capacity        = lookup(var.ep_names[0], "min_capacity", null)
-  max_capacity        = lookup(var.ep_names[0], "max_capacity", null)
+  max_size_gb         = lookup(each.value, "max_size_gb", null)
+  sku_name            = lookup(each.value, "sku", null)
+  tier                = lookup(each.value, "tier", null)
+  family              = lookup(each.value, "family", null)
+  capacity            = lookup(each.value, "capacity", null)
+  min_capacity        = lookup(each.value, "min_capacity", null)
+  max_capacity        = lookup(each.value, "max_capacity", null)
   tags                = var.tags
 
   depends_on = [
@@ -50,10 +49,8 @@ module "elasticpool" {
   ]
 }
 
-
 module "db" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.3"
-
+  source   = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.3"
   for_each = var.db_names
 
   name                = each.key
@@ -83,7 +80,7 @@ module "db" {
   server_id   = module.sqlserver.id
   server_name = module.sqlserver.name
 
-  elastic_pool_id = var.ep_names == null ? null : module.elasticpool[0].elasticpool.id
+  elastic_pool_id = lookup(each.value, "elasticpool", null) != null ? module.elasticpool[lookup(each.value, "elasticpool", "")].elasticpool.id : null
 
   kv_name = var.kv_name
   kv_rg   = var.kv_resource_group_name

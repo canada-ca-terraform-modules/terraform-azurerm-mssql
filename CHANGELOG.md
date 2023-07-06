@@ -1,9 +1,11 @@
-## 2.0.4 (June 29, 2023)
+## 3.0.0 (July 6, 2023)
 
 FEATURES:
+* Elastic Pools can be created without being associated with all dbs on a server
 
 ENHANCEMENTS:
 * `sqlserver` - added storage account replication type
+* `sqlserver` - multiple pe can be created
 * `db` - restructured to use for each
 
 BUG FIXES:
