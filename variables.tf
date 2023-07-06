@@ -42,7 +42,6 @@ variable "connection_policy" {
 }
 
 variable "ep_names" {
-  type        = list(map(string))
   description = "The name of the MSSQL elastic pool(s)."
   default     = null
 }
@@ -50,6 +49,7 @@ variable "ep_names" {
 variable "firewall_rules" {
   type        = list(string)
   description = "Specifies the Start IP Address associated with this Firewall Rule."
+  default     = []
 }
 variable "family" {
   default = null
@@ -113,13 +113,8 @@ variable "job_agent_credentials" {
   default     = null
 }
 
-variable "private_endpoint_subnet_id" {
+variable "private_endpoints" {
   description = "(Optional) Options to enable private endpoint"
-  default     = null
-}
-
-variable "private_dns_zone_ids" {
-  description = "(Optional) Specifies the list of Private DNS Zones to include within the private_dns_zone_group"
   default     = null
 }
 
