@@ -43,7 +43,7 @@ variable "connection_policy" {
 
 variable "ep_names" {
   description = "The name of the MSSQL elastic pool(s)."
-  default     = null
+  default     = {}
 }
 
 variable "firewall_rules" {
