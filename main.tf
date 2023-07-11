@@ -1,5 +1,7 @@
 module "sqlserver" {
   source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server?ref=v2.0.2"
+  
+  count = var.mssql_name == null ? 0 : 1
 
   name                                          = var.mssql_name
   environment                                   = var.environment
@@ -77,8 +79,8 @@ module "db" {
   restore_point_in_time       = lookup(each.value, "restore_point_in_time", null)
   sku                         = lookup(each.value, "sku", "Basic")
 
-  server_id   = module.sqlserver.id
-  server_name = module.sqlserver.name
+  server_id   = module.sqlserver[0].id
+  server_name = module.sqlserver[0].name
 
   elastic_pool_id = lookup(each.value, "elasticpool", null) != null ? module.elasticpool[lookup(each.value, "elasticpool", "")].elasticpool.id : null
 
@@ -86,8 +88,8 @@ module "db" {
   kv_rg   = var.kv_resource_group_name
 
   sa_resource_group_name   = var.sa_resource_group_name
-  sa_primary_blob_endpoint = module.sqlserver.sa_primary_blob_endpoint
-  sa_primary_access_key    = module.sqlserver.sa_primary_access_key
+  sa_primary_blob_endpoint = module.sqlserver[0].sa_primary_blob_endpoint
+  sa_primary_access_key    = module.sqlserver[0].sa_primary_access_key
 
   job_agent_credentials = var.job_agent_credentials
 
