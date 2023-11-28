@@ -127,3 +127,8 @@ variable "private_dns_zone_ids" {
 variable "primary_mi_id" {
   default = null
 }
+
+variable "express_va_enabled" {
+  description = "Is Express configuration of Vulnerability settings on Microsoft Cloud Defender being used?"
+  default     = true
+}

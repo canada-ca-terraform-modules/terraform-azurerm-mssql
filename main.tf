@@ -26,6 +26,7 @@ module "sqlserver" {
   private_dns_zone_ids                          = var.private_dns_zone_ids
   tags                                          = var.tags
   primary_mi_id                                 = var.primary_mi_id
+  express_va_enabled                            = var.express_va_enabled
 }
 
 module "elasticpool" {
