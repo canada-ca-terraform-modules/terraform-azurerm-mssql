@@ -1,3 +1,14 @@
+## 2.0.3.1 (March 17, 2022)
+
+FEATURES:
+* Handles Express and Classic configuration of Vulnerbility Assessments
+
+ENHANCEMENTS:
+* `\examples` - added documentation for DTU and VCore models
+* `sqlserver` - source references version 2.0.1.1 of the terraform-azurerm-mssql-server module
+
+BUG FIXES:
+
 ## 2.0.3 (March 17, 2022)
 
 FEATURES:

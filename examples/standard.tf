@@ -1,5 +1,5 @@
 module "mssql" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql?ref=v2.0.3"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql?ref=v2.0.3.1"
 
   mssql_name          = "sqlservername001"
   location            = "canadacentral"
@@ -28,6 +28,7 @@ module "mssql" {
   #mssql_version                                 = "12.0"
   #emails                                        = ["name@domain.ca"]
   #retention_days                                = 90
+  #express_va_enabled                            = true
   */
 
   /*
