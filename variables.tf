@@ -126,3 +126,8 @@ variable "account_replication_type" {
   description = "(Required) Defines the type of replication to use for this storage account. Valid options are LRS, GRS, RAGRS, ZRS, GZRS and RAGZRS."
   default     = "LRS"
 }
+
+variable "express_va_enabled" {
+  description = "Is Express configuration of Vulnerability settings on Microsoft Cloud Defender being used?"
+  default     = true
+}
