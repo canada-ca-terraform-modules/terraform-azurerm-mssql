@@ -1,3 +1,14 @@
+## 3.0.0.1 (January 12, 2024)
+
+FEATURES:
+Supports inheiretance of Express Vulnarability Assesment settings
+
+ENHANCEMENTS:
+
+ENHANCEMENTS:
+
+BUG FIXES:
+
 ## 3.0.0 (July 6, 2023)
 
 FEATURES:

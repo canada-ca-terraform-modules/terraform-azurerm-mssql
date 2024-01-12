@@ -11,7 +11,7 @@ data "azurerm_private_dns_zone" "mssql" {
 }
 
 module "mssql" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql?ref=v3.0.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql?ref=v3.0.0.1"
 
   mssql_name          = "sqlservername001"
   location            = "canadacentral"
@@ -51,6 +51,7 @@ module "mssql" {
   #mssql_version                                 = "12.0"
   #retention_days                                = 90
   #job_agent_credentials                         = { username = "username", password = "password" }
+  #express_va_enabled                            = ttrue
 
   #[Optional] Firewall Configurations
   #firewall_rules                                = []
