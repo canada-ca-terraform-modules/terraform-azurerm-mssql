@@ -53,7 +53,8 @@ module "elasticpool" {
 }
 
 module "db" {
-  source   = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.3"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.4"
+
   for_each = var.db_names
 
   name                = each.key
@@ -63,9 +64,9 @@ module "db" {
 
   collation                   = lookup(each.value, "collation", "SQL_Latin1_General_CP1_CI_AS")
   max_size_gb                 = lookup(each.value, "db_max_size_gb", null)
-  min_capacity                = lookup(each.value, "min_capacity", 0.5)
-  auto_pause_delay_in_minutes = lookup(each.value, "auto_pause_delay_in_minutes", 0)
-  read_replica_count          = lookup(each.value, "read_replica_count", 0)
+  min_capacity                = lookup(each.value, "min_capacity", null)
+  auto_pause_delay_in_minutes = lookup(each.value, "auto_pause_delay_in_minutes", null)
+  read_replica_count          = lookup(each.value, "read_replica_count", null)
   read_scale                  = lookup(each.value, "read_scale", null)
   zone_redundant              = lookup(each.value, "zone_redundant", null)
   str_days                    = lookup(each.value, "str_days", local.str_days)

@@ -1,3 +1,13 @@
+## 3.0.1 (June 4, 2024)
+
+FEATURES:
+
+ENHANCEMENTS:
+
+BUG FIXES:
+* `db` - Hyperscale configuration enabled
+
+
 ## 3.0.0.1 (January 12, 2024)
 
 FEATURES:
@@ -20,6 +30,7 @@ ENHANCEMENTS:
 * `db` - restructured to use for each
 
 BUG FIXES:
+
 
 ## 2.0.3 (March 17, 2023)
 
