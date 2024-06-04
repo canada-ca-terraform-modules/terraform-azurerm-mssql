@@ -23,12 +23,13 @@ data "azurerm_subnet" "front" {
 }
 
 data "azurerm_subnet" "mid" {
-  name                = "devcc-mid"
-  resource_group_name = "network-dev-rg"
+  name                 = "devcc-mid"
+  resource_group_name  = "network-dev-rg"
+  virtual_network_name = "devcc-vnet"
 }
 
 module "mssql" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql?ref=v3.0.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql?ref=v3.0.0.1"
 
   mssql_name          = "sqlservername001"
   location            = "canadacentral"
@@ -70,6 +71,7 @@ module "mssql" {
   #mssql_version                                 = "12.0"
   #retention_days                                = 90
   #job_agent_credentials                         = { username = "username", password = "password" }
+  #express_va_enabled                            = ttrue
 
   #[Optional] Firewall Configurations
   firewall_rules = ["0.0.0.0"]

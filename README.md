@@ -1,6 +1,6 @@
 # Terraform for Azure Managed Database MSSQL
 
-**Current Version:** v3.0.0
+**Current Version:** v3.0.0.1
 
 ## Summary
 Creates an MSSQL Server, Database and Elastic Pools.
@@ -31,7 +31,7 @@ No providers.
 |------|--------|---------|
 | <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.0.3 |
 | <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.2 |
-| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server | v2.0.2 |
+| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server | v2.0.2.1 |
 
 ## Resources
 
@@ -51,7 +51,8 @@ No resources.
 | <a name="input_db_names"></a> [db\_names](#input\_db\_names) | (Required) The name of the MSSQL database(s). | `any` | n/a | yes |
 | <a name="input_emails"></a> [emails](#input\_emails) | List of email addresses that should recieve the security reports. | `list(string)` | `[]` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | The environment used for keyvault access. | `any` | n/a | yes |
-| <a name="input_ep_names"></a> [ep\_names](#input\_ep\_names) | The name of the MSSQL elastic pool(s). | `any` | `null` | no |
+| <a name="input_ep_names"></a> [ep\_names](#input\_ep\_names) | The name of the MSSQL elastic pool(s). | `map` | `{}` | no |
+| <a name="input_express_va_enabled"></a> [express\_va\_enabled](#input\_express\_va\_enabled) | Is Express configuration of Vulnerability settings on Microsoft Cloud Defender being used? | `bool` | `true` | no |
 | <a name="input_family"></a> [family](#input\_family) | n/a | `any` | `null` | no |
 | <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | Specifies the Start IP Address associated with this Firewall Rule. | `list(string)` | `[]` | no |
 | <a name="input_job_agent_credentials"></a> [job\_agent\_credentials](#input\_job\_agent\_credentials) | username and password for an elastic job agent | `any` | `null` | no |
