@@ -1,6 +1,6 @@
 module "sqlserver" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server?ref=v2.0.2"
-  
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server?ref=v2.0.2.1"
+
   count = var.mssql_name == null ? 0 : 1
 
   name                                          = var.mssql_name
@@ -26,6 +26,7 @@ module "sqlserver" {
   tags                                          = var.tags
   primary_mi_id                                 = var.primary_mi_id
   account_replication_type                      = var.account_replication_type
+  express_va_enabled                            = var.express_va_enabled
 }
 
 module "elasticpool" {

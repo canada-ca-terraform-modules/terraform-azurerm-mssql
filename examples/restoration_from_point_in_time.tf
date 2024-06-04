@@ -50,6 +50,7 @@ module "mssql" {
   #mssql_version                                 = "12.0"
   #retention_days                                = 90
   #job_agent_credentials                         = { username = "username", password = "password" }
+  #express_va_enabled                            = ttrue
 
   #[Optional] Firewall Configurations
   #firewall_rules                                = []
