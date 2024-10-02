@@ -1,6 +1,7 @@
 # Terraform for Azure Managed Database MSSQL
 
-**Current Version:** v3.0.1
+**Current Version:** v3.0.2
+
 
 ## Summary
 Creates an MSSQL Server, Database and Elastic Pools.
@@ -31,7 +32,7 @@ No providers.
 |------|--------|---------|
 | <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.0.4 |
 | <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.2 |
-| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server | v2.0.2.1 |
+| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server | v2.0.3 |
 
 ## Resources
 

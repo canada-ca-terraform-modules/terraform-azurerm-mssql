@@ -1,3 +1,13 @@
+## 3.0.2 (October 1, 2024)
+
+FEATURES:
+
+ENHANCEMENTS:
+
+BUG FIXES:
+* `sqlserver` - https enabled argument renamed
+
+
 ## 3.0.1 (June 4, 2024)
 
 FEATURES:
