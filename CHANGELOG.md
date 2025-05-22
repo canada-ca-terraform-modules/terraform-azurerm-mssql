@@ -1,3 +1,12 @@
+## 3.1.0 (May 22, 2025)
+
+FEATURES:
+* `elasticpool`, `db` - add support for parameter **enclave_type**.
+
+ENHANCEMENTS:
+
+BUG FIXES:
+
 ## 3.0.2 (October 1, 2024)
 
 FEATURES:

@@ -1,5 +1,5 @@
 module "sqlserver" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server?ref=v2.0.3"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server?ref=ICP-11879"
 
   count = var.mssql_name == null ? 0 : 1
 
@@ -30,7 +30,7 @@ module "sqlserver" {
 }
 
 module "elasticpool" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.0.2"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=ICP-11879"
 
   for_each = var.ep_names
 
@@ -39,6 +39,7 @@ module "elasticpool" {
   resource_group_name = var.resource_group_name
   server_name         = module.sqlserver[0].name
   max_size_gb         = lookup(each.value, "max_size_gb", null)
+  enclave_type        = lookup(each.value, "enclave_type", null)
   sku_name            = lookup(each.value, "sku", null)
   tier                = lookup(each.value, "tier", null)
   family              = lookup(each.value, "family", null)
@@ -53,7 +54,7 @@ module "elasticpool" {
 }
 
 module "db" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.0.4"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=ICP-11879"
 
   for_each = var.db_names
 
@@ -80,6 +81,7 @@ module "db" {
   restore_dropped_database_id = lookup(each.value, "restore_dropped_database_id", null)
   restore_point_in_time       = lookup(each.value, "restore_point_in_time", null)
   sku                         = lookup(each.value, "sku", "Basic")
+  enclave_type                = lookup(each.value, "enclave_type", null)
 
   server_id   = module.sqlserver[0].id
   server_name = module.sqlserver[0].name
