@@ -1,5 +1,6 @@
 module "sqlserver" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server?ref=ICP-11879"
+  #source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server?ref=v2.1.0"\\
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-server.git?ref=ICP-11879"
 
   count = var.mssql_name == null ? 0 : 1
 
@@ -30,7 +31,8 @@ module "sqlserver" {
 }
 
 module "elasticpool" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=ICP-11879"
+  #source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.1.0"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-elasticpool.git?ref=ICP-11879"
 
   for_each = var.ep_names
 
@@ -54,7 +56,8 @@ module "elasticpool" {
 }
 
 module "db" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=ICP-11879"
+  #source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.1.0"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/managed-databases/single-server/terraform-azurerm-mssql-database.git?ref=ICP-11879"
 
   for_each = var.db_names
 
