@@ -41,7 +41,7 @@ module "elasticpool" {
   resource_group_name = var.resource_group_name
   server_name         = module.sqlserver[0].name
   max_size_gb         = lookup(each.value, "max_size_gb", null)
-  enclave_type        = lookup(each.value, "enclave_type", "Default")
+  enclave_type        = lookup(each.value, "enclave_type", null)
   sku_name            = lookup(each.value, "sku", null)
   tier                = lookup(each.value, "tier", null)
   family              = lookup(each.value, "family", null)
@@ -89,7 +89,7 @@ module "db" {
   server_id   = module.sqlserver[0].id
   server_name = module.sqlserver[0].name
 
-  elastic_pool_id = lookup(each.value, "elasticpool", null) != null ? module.elasticpool[lookup(each.value, "elasticpool", "")].elasticpool.id : null
+  elastic_pool_id = lookup(each.value, "elasticpool", null) != null ? module.elasticpool[lookup(each.value, "elasticpool", null)].elasticpool.id : null
 
   kv_name = var.kv_name
   kv_rg   = var.kv_resource_group_name
