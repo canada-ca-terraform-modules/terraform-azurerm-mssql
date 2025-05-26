@@ -31,8 +31,8 @@ module "mssql" {
 
   #Database Configurations
   db_names = {
-    "elasticpoolbasic"      = { sku = "ElasticPool", elasticpool = "vcorepool001", enclave_type = "Default" }
-    "elasticpoolallconfigs" = { sku = "ElasticPool", elasticpool = "vcorepool002", collation = "SQL_Latin1_General_CP1_CI_AS", max_size_gb = 32, min_capacity = 0.5, str_days = 7, ltr_monthly_retention = "P1Y", ltr_weekly_retention = "P1W", ltr_yearly_retention = "P1Y", ltr_week_of_year = "52", enclave_type = "Default" }
+    "elasticpoolbasic"      = { sku = "ElasticPool", elasticpool = "vcorepool001" }
+    "elasticpoolallconfigs" = { sku = "ElasticPool", elasticpool = "vcorepool002", collation = "SQL_Latin1_General_CP1_CI_AS", max_size_gb = 32, min_capacity = 0.5, str_days = 7, ltr_monthly_retention = "P1Y", ltr_weekly_retention = "P1W", ltr_yearly_retention = "P1Y", ltr_week_of_year = "52" }
     "poollessbasic"         = { sku = "GP_Gen5_2" }
   }
   db_owners = ["HostingDevSQL"] #Your AD Group or cloud username @cloud.statcan.ca
