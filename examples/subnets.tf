@@ -29,7 +29,7 @@ data "azurerm_subnet" "mid" {
 }
 
 module "mssql" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql?ref=v3.0.0.1"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql?ref=v3.1.0"
 
   mssql_name          = "sqlservername001"
   location            = "canadacentral"

@@ -1,14 +1,15 @@
 # Terraform for Azure Managed Database MSSQL
 
-**Current Version:** v3.0.2
-
+**Current Version:** v3.1.0
 
 ## Summary
+
 Creates an MSSQL Server, Database and Elastic Pools.
 Examples for using the module can be found in the [examples/](examples/) folder.
 Changelog can be found in CHANGELOG.md
 
 Using this module you will be able to create:
+
 - [Azure SQL Server](https://docs.microsoft.com/en-us/azure/azure-sql)
 - [Azure SQL DB](https://docs.microsoft.com/en-us/azure/azure-sql)
 - [Azure SQL Database Elastic Pool](https://learn.microsoft.com/en-us/azure/azure-sql/database/elastic-pool-overview?view=azuresql)
@@ -17,7 +18,7 @@ Using this module you will be able to create:
 
 See inputs and examples for reference.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 No requirements.
@@ -30,9 +31,9 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.0.4 |
-| <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.0.2 |
-| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server | v2.0.3 |
+| <a name="module_db"></a> [db](#module\_db) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git | v2.1.0 |
+| <a name="module_elasticpool"></a> [elasticpool](#module\_elasticpool) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git | v1.1.0 |
+| <a name="module_sqlserver"></a> [sqlserver](#module\_sqlserver) | git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-server.git | v2.1.0 |
 
 ## Resources
 
@@ -78,4 +79,4 @@ No resources.
 | <a name="output_db"></a> [db](#output\_db) | n/a |
 | <a name="output_elasticpool"></a> [elasticpool](#output\_elasticpool) | n/a |
 | <a name="output_sqlserver"></a> [sqlserver](#output\_sqlserver) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
