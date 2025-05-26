@@ -89,7 +89,7 @@ module "db" {
   server_id   = module.sqlserver[0].id
   server_name = module.sqlserver[0].name
 
-  elastic_pool_id = lookup(each.value, "elasticpool", null) != null ? module.elasticpool[lookup(each.value, "elasticpool", null)].elasticpool.id : null
+  elastic_pool_id = lookup(each.value, "elasticpool", null) != null ? module.elasticpool[lookup(each.value, "elasticpool", "")].elasticpool.id : null
 
   kv_name = var.kv_name
   kv_rg   = var.kv_resource_group_name
