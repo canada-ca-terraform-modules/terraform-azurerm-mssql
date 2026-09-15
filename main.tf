@@ -30,7 +30,7 @@ module "sqlserver" {
 }
 
 module "elasticpool" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v1.1.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-elasticpool.git?ref=v2.0.0"
 
   for_each = var.ep_names
 
@@ -54,7 +54,7 @@ module "elasticpool" {
 }
 
 module "db" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v2.1.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-mssql-database.git?ref=v3.0.0"
 
   for_each = var.db_names
 
