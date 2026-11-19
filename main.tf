@@ -47,10 +47,6 @@ module "elasticpool" {
   min_capacity        = lookup(each.value, "min_capacity", null)
   max_capacity        = lookup(each.value, "max_capacity", null)
   tags                = var.tags
-
-  depends_on = [
-    module.sqlserver
-  ]
 }
 
 module "db" {
@@ -98,9 +94,4 @@ module "db" {
   job_agent_credentials = var.job_agent_credentials
 
   tags = var.tags
-
-  depends_on = [
-    module.sqlserver,
-    module.elasticpool
-  ]
 }
