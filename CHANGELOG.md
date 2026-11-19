@@ -1,3 +1,8 @@
+## 4.0.1 (November 19, 2026)
+
+BUG FIXES:
+* `depends_on` arguments have been removed, the dependancies were already inferred
+
 ## 4.0.0 (September 15, 2026)
 
 ENHANCEMENTS:
